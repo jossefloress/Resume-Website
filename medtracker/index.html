@@ -3,277 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Medication Schedule</title>
+<title>MedScheduler — Free Daily Medication Tracker</title>
+
+<!-- SEO -->
+<meta name="description" content="MedScheduler is a free daily medication schedule tracker. Enter your prescriptions and get an auto-generated dose checklist, timing guide, and drug interaction alerts — no account required to get started.">
+<meta name="keywords"    content="medication tracker, pill schedule, drug interactions, daily medication reminder, prescription organizer, free medication tracker">
+<meta name="robots"      content="index, follow">
+<meta name="author"      content="MedScheduler">
+
+<!-- Open Graph -->
+<meta property="og:title"       content="MedScheduler — Free Daily Medication Tracker">
+<meta property="og:description" content="Auto-generate your daily medication schedule with dose timing and drug interaction alerts. Free, no account required to start.">
+<meta property="og:type"        content="website">
+<meta name="theme-color"        content="#085041">
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --green-deep: #085041;
-    --green-mid: #0F6E56;
-    --green-bright: #1D9E75;
-    --green-light: #9FE1CB;
-    --green-pale: #E1F5EE;
-    --amber: #BA7517;
-    --amber-pale: #FAEEDA;
-    --gray-dark: #2C2C2A;
-    --gray-mid: #5F5E5A;
-    --gray-light: #D3D1C7;
-    --gray-pale: #F1EFE8;
-    --white: #ffffff;
-    --red: #A32D2D;
-    --red-pale: #FCEBEB;
-    --purple: #3a3070;
-    --purple-light: #c9c4f0;
-    --navy: #1a2a4a;
-    --navy-light: #90caf9;
-  }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--gray-pale);
-    color: var(--gray-dark);
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-  }
-  .page { max-width: 780px; margin: 0 auto; }
-
-  /* ══ HEADER ══ */
-  header {
-    background: var(--green-deep);
-    border-radius: 16px;
-    padding: 2rem 2.5rem 1.75rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  header::after {
-    content: '';
-    position: absolute; right: -40px; top: -40px;
-    width: 180px; height: 180px; border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-  }
-  header h1 {
-    font-family: 'DM Serif Display', serif;
-    color: var(--white); font-size: 2rem; font-weight: 400; margin-bottom: 0.3rem;
-  }
-  header > p { color: var(--green-light); font-size: 0.88rem; font-weight: 300; }
-
-  .header-meta {
-    display: flex; align-items: center;
-    gap: 2rem; margin-top: 1.2rem; flex-wrap: wrap;
-  }
-  .date-field {
-    display: flex; align-items: center; gap: 0.5rem;
-    color: var(--green-light); font-size: 0.85rem;
-  }
-  .date-field input[type="date"] {
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px; color: white; padding: 4px 10px;
-    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer;
-  }
-  .date-field input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
-
-  .progress-row { display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 200px; }
-  .progress-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.15); border-radius: 3px; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--green-light); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
-  .progress-label { color: var(--green-light); font-size: 0.82rem; white-space: nowrap; }
-
-  /* wake strip */
-  .header-strip {
-    margin-top: 1.25rem; padding-top: 1.2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
-  }
-  .header-strip label { color: var(--green-light); font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
-  .wake-input {
-    background: rgba(255,255,255,0.13); border: 1.5px solid rgba(255,255,255,0.3);
-    border-radius: 9px; color: white; padding: 7px 14px;
-    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500;
-    cursor: pointer; outline: none;
-    transition: background 0.18s, border-color 0.18s; min-width: 130px;
-  }
-  .wake-input:focus { background: rgba(255,255,255,0.2); border-color: var(--green-light); }
-  .wake-input::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
-  .wake-meta { display: flex; flex-direction: column; gap: 0.15rem; flex: 1; min-width: 180px; }
-  .wake-summary { color: rgba(159,225,203,0.9); font-size: 0.82rem; }
-  .wake-sub     { color: rgba(159,225,203,0.6); font-size: 0.76rem; font-style: italic; }
-
-  /* PRN toggle strip */
-  .prn-strip {
-    margin-top: 1rem; padding-top: 1rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
-  }
-  .prn-strip-text { flex: 1; min-width: 160px; }
-  .prn-strip-text strong { color: var(--green-light); font-size: 0.85rem; font-weight: 500; display: block; }
-  .prn-strip-text span   { color: rgba(159,225,203,0.6); font-size: 0.75rem; }
-
-  .prn-pill-toggle {
-    display: flex; border-radius: 30px; overflow: hidden;
-    border: 1.5px solid rgba(255,255,255,0.25); flex-shrink: 0;
-  }
-  .prn-pill-toggle button {
-    padding: 6px 18px; background: transparent; border: none;
-    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500;
-    cursor: pointer; color: rgba(255,255,255,0.55);
-    transition: background 0.2s, color 0.2s; white-space: nowrap;
-  }
-  .prn-pill-toggle button.active-show { background: var(--green-bright); color: white; }
-  .prn-pill-toggle button.active-hide { background: var(--amber); color: white; }
-
-  /* ══ MIDNIGHT BANNER ONLY ══ */
-  .midnight-banner {
-    display: none;
-    background: #f0eeff; border-left: 3px solid #6b5fc7;
-    border-radius: 0 10px 10px 0; padding: 0.75rem 1rem;
-    font-size: 0.82rem; color: #3a3070; margin-bottom: 1.25rem; line-height: 1.65;
-  }
-  .midnight-banner.visible { display: block; }
-
-  .controls { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-  .btn {
-    padding: 0.55rem 1.2rem; border-radius: 10px; border: 1.5px solid;
-    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
-    cursor: pointer; transition: all 0.18s;
-  }
-  .btn-reset { background: var(--white); border-color: var(--red); color: var(--red); }
-  .btn-reset:hover { background: var(--red-pale); }
-  .btn-print { background: var(--green-deep); border-color: var(--green-deep); color: white; }
-  .btn-print:hover { background: var(--green-mid); }
-  .btn-all { background: var(--white); border-color: var(--green-bright); color: var(--green-mid); }
-  .btn-all:hover { background: var(--green-pale); }
-
-  .note-banner {
-    background: var(--amber-pale); border-left: 3px solid var(--amber);
-    border-radius: 0 10px 10px 0; padding: 0.75rem 1rem;
-    font-size: 0.82rem; color: var(--amber); margin-bottom: 1.5rem; line-height: 1.6;
-  }
-
-  .section-title {
-    font-family: 'DM Serif Display', serif; font-size: 1.15rem; font-weight: 400;
-    color: var(--green-deep); margin: 2rem 0 0.85rem;
-  }
-
-  /* ══ CHECKLIST ══ */
-  .time-block { margin-bottom: 1.25rem; }
-  .prn-hidden .time-block.all-prn  { display: none; }
-  .prn-hidden .med-row.is-prn      { display: none; }
-  .prn-hidden .diaz-note-row       { display: none; }
-
-  .time-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
-  .time-badge {
-    font-size: 0.75rem; font-weight: 500; padding: 4px 12px; border-radius: 20px;
-    white-space: nowrap; background: var(--green-deep); color: var(--green-light);
-  }
-  .time-badge.night    { background: var(--navy); color: var(--navy-light); }
-  .time-badge.next-day { background: var(--purple); color: var(--purple-light); }
-  .time-line { flex: 1; height: 1px; background: var(--gray-light); }
-
-  .diaz-note-row {
-    background: #fffbf3; border: 1px dashed #e6c87a;
-    border-radius: 10px; padding: 0.55rem 1rem;
-    margin-bottom: 0.5rem; margin-top: -0.25rem;
-    font-size: 0.78rem; color: var(--amber); line-height: 1.5;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-
-  .med-row {
-    background: var(--white); border: 1px solid var(--gray-light);
-    border-radius: 12px; padding: 0.9rem 1rem; margin-bottom: 0.5rem;
-    display: grid; grid-template-columns: auto 1fr auto;
-    gap: 0 1rem; align-items: center;
-    transition: opacity 0.2s, background 0.2s;
-    cursor: pointer; user-select: none;
-  }
-  .med-row:hover { background: #fafaf8; }
-  .med-row.taken { background: var(--green-pale); border-color: var(--green-light); opacity: 0.75; }
-  .med-row.taken .med-name { text-decoration: line-through; color: var(--gray-mid); }
-  .prn-hidden .med-row.is-prn { display: none; }
-
-  .checkbox {
-    width: 20px; height: 20px; border: 2px solid var(--green-bright);
-    border-radius: 6px; display: flex; align-items: center;
-    justify-content: center; flex-shrink: 0;
-    transition: background 0.18s, border-color 0.18s;
-  }
-  .med-row.taken .checkbox { background: var(--green-bright); border-color: var(--green-bright); }
-  .checkbox svg { display: none; }
-  .med-row.taken .checkbox svg { display: block; }
-
-  .med-name { font-size: 0.95rem; font-weight: 500; color: var(--gray-dark); transition: color 0.2s; }
-  .med-dose { font-size: 0.8rem; color: var(--gray-mid); margin-top: 1px; }
-  .med-tag  {
-    font-size: 0.72rem; padding: 2px 8px; border-radius: 20px;
-    font-weight: 500; white-space: nowrap; align-self: start; margin-top: 2px;
-  }
-  .tag-prn { background: var(--amber-pale); color: var(--amber); }
-  .tag-rx  { background: var(--green-pale); color: var(--green-mid); }
-
-  /* sleep divider */
-  .sleep-divider { display: flex; align-items: center; gap: 0.75rem; margin: 1.6rem 0; }
-  .sleep-divider-line { flex: 1; height: 0; border-top: 1px dashed var(--gray-light); }
-  .sleep-divider-pill {
-    background: #e8f0fe; color: #3c5a99;
-    font-size: 0.74rem; font-weight: 500;
-    padding: 4px 14px; border-radius: 20px; white-space: nowrap;
-  }
-
-  /* ══ TABLE ══ */
-  .schedule-table {
-    background: var(--white); border: 1px solid var(--gray-light);
-    border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem;
-  }
-  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-  thead th {
-    background: var(--green-deep); color: var(--green-light);
-    font-weight: 500; padding: 0.55rem 0.9rem;
-    text-align: left; font-size: 0.75rem; letter-spacing: 0.04em;
-  }
-  tbody tr { border-bottom: 1px solid var(--gray-pale); }
-  tbody tr:last-child { border-bottom: none; }
-  tbody td { padding: 0.6rem 0.9rem; color: var(--gray-dark); }
-  tbody tr:nth-child(even) td { background: #fafaf8; }
-  .td-time          { font-weight: 500; color: var(--green-mid); white-space: nowrap; }
-  .td-time.night    { color: #1565C0; }
-  .td-time.next-day { color: #6b5fc7; }
-  .td-note { color: var(--gray-mid); font-style: italic; font-size: 0.78rem; }
-  .td-prn  { color: var(--amber); font-size: 0.76rem; font-weight: 600; }
-  .td-rx   { color: var(--green-mid); font-size: 0.76rem; font-weight: 500; }
-  .table-sleep-row td {
-    background: #e8f0fe !important; color: #3c5a99;
-    font-size: 0.76rem; font-style: italic;
-    text-align: center; padding: 0.4rem 0.9rem;
-  }
-  .prn-hidden .tr-prn { display: none; }
-
-  /* ══ PILL CARDS ══ */
-  .pill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-bottom: 2rem; }
-  .pill-card { background: var(--white); border: 1px solid var(--gray-light); border-radius: 12px; padding: 1rem 1.1rem; }
-  .pill-card-header { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.5rem; }
-  .pill-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-  .pill-card-name    { font-size: 0.88rem; font-weight: 500; color: var(--gray-dark); line-height: 1.3; }
-  .pill-card-generic { font-size: 0.75rem; color: var(--gray-mid); margin-top: 1px; }
-  .pill-card-desc    { font-size: 0.8rem; color: var(--gray-mid); line-height: 1.6; }
-  .pill-card-desc strong { color: var(--green-mid); font-weight: 500; }
-  .pill-warn { font-size: 0.75rem; color: var(--amber); background: var(--amber-pale); border-radius: 6px; padding: 4px 8px; margin-top: 0.5rem; line-height: 1.5; }
-
-  @media print {
-    body { background: white; padding: 0; }
-    .btn, .controls, .header-strip, .prn-strip { display: none !important; }
-    .midnight-banner { display: none !important; }
-    header { border-radius: 0; }
-    .med-row { break-inside: avoid; }
-  }
-</style>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════════════
+     DEMO HERO BANNER
+     Visible by default. Hidden after login.
+═══════════════════════════════════════════════ -->
+<div id="demoHero" class="demo-hero">
+  <div class="demo-hero-inner">
+
+    <div class="demo-hero-badge">🧪 Demo Mode</div>
+
+    <div class="demo-hero-logo">💊</div>
+    <h1 class="demo-hero-title">MedScheduler</h1>
+    <p class="demo-hero-sub">
+      Your free daily medication schedule — auto-generated from your prescriptions.<br>
+      No account needed to get started.
+    </p>
+
+    <!-- Feature bullets -->
+    <ul class="demo-hero-features">
+      <li><span class="feat-icon">⏰</span> Auto-builds your dose schedule from wake time</li>
+      <li><span class="feat-icon">🔴</span> Flags drug interactions automatically</li>
+      <li><span class="feat-icon">✅</span> Tap-to-check daily progress tracker</li>
+      <li><span class="feat-icon">🖨</span> Print-ready schedule</li>
+    </ul>
+
+    <!-- CTA -->
+    <div class="demo-hero-cta">
+      <button class="hero-btn hero-btn-primary" onclick="openAuthModal('signup')">
+        Create Free Account — Save My Meds
+      </button>
+      <button class="hero-btn hero-btn-secondary" onclick="openAuthModal('signin')">
+        Sign In
+      </button>
+    </div>
+
+    <div class="demo-hero-divider">
+      <span>or just explore — no account needed</span>
+    </div>
+
+    <button class="hero-btn hero-btn-ghost" onclick="dismissDemoHero()">
+      Continue in Demo Mode →
+    </button>
+
+    <p class="demo-hero-note">
+      💾 Any medications you enter will be saved to your account when you sign in or register.
+    </p>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     STICKY DEMO SAVE BANNER
+     Shown after hero is dismissed, while still in demo mode.
+═══════════════════════════════════════════════ -->
+<div id="demoSaveBanner" class="demo-save-banner">
+  <div class="dsb-icon">💾</div>
+  <div class="dsb-text">
+    <strong>Demo Mode — your medications aren't saved to an account yet</strong>
+    <span>Sign in or create a free account to save across devices. Your entered meds transfer automatically.</span>
+  </div>
+  <div class="dsb-actions">
+    <button class="dsb-btn dsb-btn-signup"  onclick="openAuthModal('signup')">Create Free Account</button>
+    <button class="dsb-btn dsb-btn-signin"  onclick="openAuthModal('signin')">Sign In</button>
+    <button class="dsb-btn dsb-btn-dismiss" onclick="dismissSaveBanner()" title="Dismiss">✕</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     AUTH MODAL
+═══════════════════════════════════════════════ -->
+<div id="authModal" class="auth-modal-overlay">
+  <div class="auth-card">
+
+    <div class="auth-card-head">
+      <div class="auth-logo">💊</div>
+      <h2>MedScheduler</h2>
+      <p>Save your medications and access from any device</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabSignIn" onclick="switchTab('signin')">Sign In</button>
+      <button class="auth-tab"        id="tabSignUp" onclick="switchTab('signup')">Create Account</button>
+    </div>
+
+    <div class="auth-body">
+
+      <div class="auth-close-row">
+        <button class="auth-close-btn" onclick="closeAuthModal()" title="Continue in demo mode">✕</button>
+      </div>
+
+      <div class="auth-saving-notice" id="authSavingNotice">
+        ✅ Your medications will be linked to your account automatically after signing in.
+      </div>
+
+      <div class="auth-error"   id="authError"></div>
+      <div class="auth-success" id="authSuccess"></div>
+
+      <!-- SIGN IN -->
+      <div id="formSignIn">
+        <div class="auth-field">
+          <label>Email</label>
+          <input type="email" id="siEmail" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label>Password</label>
+          <input type="password" id="siPassword" placeholder="Your password"
+            autocomplete="current-password" onkeydown="if(event.key==='Enter') signIn()">
+        </div>
+        <div class="auth-forgot">
+          <button onclick="resetPassword()">Forgot password?</button>
+        </div>
+        <button class="auth-btn" id="btnSignIn" onclick="signIn()">
+          Sign In &amp; Save Medications
+        </button>
+        <div class="auth-divider">or</div>
+        <button class="auth-btn google" onclick="signInGoogle()">
+          <svg width="17" height="17" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          Continue with Google
+        </button>
+      </div>
+
+      <!-- SIGN UP -->
+      <div id="formSignUp" style="display:none;">
+        <div class="auth-field">
+          <label>Your Name</label>
+          <input type="text" id="suName" placeholder="First name or nickname" autocomplete="name">
+        </div>
+        <div class="auth-field">
+          <label>Email</label>
+          <input type="email" id="suEmail" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label>Password</label>
+          <input type="password" id="suPassword" placeholder="Minimum 6 characters"
+            autocomplete="new-password" onkeydown="if(event.key==='Enter') signUp()">
+        </div>
+        <button class="auth-btn" id="btnSignUp" onclick="signUp()">
+          Create Account &amp; Save Medications
+        </button>
+        <div class="auth-divider">or</div>
+        <button class="auth-btn google" onclick="signInGoogle()">
+          <svg width="17" height="17" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          Sign up with Google
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     APP (always in DOM — visible behind hero)
+═══════════════════════════════════════════════ -->
+<div id="appScreen">
 <div class="page">
 
-  <!-- ═══════════ HEADER ═══════════ -->
   <header>
-    <h1>Daily Medication Schedule</h1>
-    <p>Enter your wake-up time — every dose recalculates instantly</p>
+    <div class="header-top">
+      <div class="header-titles">
+        <h1>Daily Medication Schedule</h1>
+        <p>Enter your medications — your schedule builds itself automatically</p>
+      </div>
+      <div class="chip-wrap" id="chipWrap">
+        <button class="demo-chip-btn" id="demoChipBtn" onclick="openAuthModal('signin')">
+          🧪 Demo Mode — Sign In
+        </button>
+        <button class="user-chip" id="userChip" style="display:none;" onclick="toggleUserMenu()">
+          <div class="user-avatar" id="userAvatar">?</div>
+          <div>
+            <div class="user-chip-name" id="userChipName"></div>
+            <div class="user-chip-sub">▾ Account</div>
+          </div>
+        </button>
+        <div class="user-menu" id="userMenu">
+          <div class="user-menu-header">
+            <strong id="menuName">—</strong>
+            <span   id="menuEmail">—</span>
+          </div>
+          <div class="user-menu-divider"></div>
+          <button class="user-menu-item" onclick="clearUserData()">🗑 Clear My Medications</button>
+          <div class="user-menu-divider"></div>
+          <button class="user-menu-item danger" onclick="signOutUser()">↩ Sign Out</button>
+        </div>
+      </div>
+    </div>
 
     <div class="header-meta">
       <div class="date-field">
@@ -286,403 +228,91 @@
       </div>
     </div>
 
-    <!-- Wake time — default 9:00 AM -->
     <div class="header-strip">
-      <label for="wakeInput">⏰ I woke up at:</label>
+      <label for="wakeInput">⏰ Wake-up time:</label>
       <input type="time" id="wakeInput" class="wake-input" value="09:00">
       <div class="wake-meta">
-        <span class="wake-summary" id="wakeSummary"></span>
+        <span class="wake-summary" id="wakeSummary">Enter medications to generate your schedule</span>
         <span class="wake-sub"     id="wakeSub"></span>
-      </div>
-    </div>
-
-    <!-- PRN toggle -->
-    <div class="prn-strip">
-      <div class="prn-strip-text">
-        <strong>As-Needed (PRN) time slots</strong>
-        <span>Diazepam · Oxycodone · Ondansetron</span>
-      </div>
-      <div class="prn-pill-toggle">
-        <button id="btnShow" class="active-show" onclick="setPrn(true)">👁 Show</button>
-        <button id="btnHide"                     onclick="setPrn(false)">🚫 Hide</button>
       </div>
     </div>
   </header>
 
-  <!-- midnight-only banner (no late-wake banner) -->
+  <div class="db-loading-banner" id="dbLoadingBanner">
+    <div class="spinner-green"></div>
+    Loading drug database…
+  </div>
+
+  <!-- Setup Panel -->
+  <div class="setup-panel">
+    <div class="setup-panel-head">
+      <div>
+        <h2>💊 My Medications</h2>
+        <p>Fill in each medication — schedule and drug info update on save</p>
+      </div>
+      <button class="btn-collapse" id="collapseBtn" onclick="togglePanel()">▲ Collapse</button>
+    </div>
+    <div class="setup-body" id="setupBody">
+      <div class="med-form-labels">
+        <span>Medication Name</span>
+        <span>Dose</span>
+        <span>Pills / Amount</span>
+        <span>Frequency</span>
+        <span>Food Note</span>
+        <span></span>
+      </div>
+      <div id="medRows"></div>
+    </div>
+    <div class="setup-footer" id="setupFooter">
+      <button class="btn-add-med"  onclick="addMedRow()">+ Add Another Medication</button>
+      <button class="btn-generate" onclick="generate()">⚡ Save &amp; Generate Schedule</button>
+      <span id="saveConfirmMsg" class="save-confirm-msg">✔ Saved</span>
+    </div>
+  </div>
+
+  <!-- Med Info Section -->
+  <div class="info-section" id="infoSection" style="display:none;">
+    <div class="info-section-head">
+      <h3>Medication Information</h3>
+      <span class="db-badge" id="infoBadge">📋 Firestore Drug Database</span>
+    </div>
+    <div class="disclaimer">
+      ⚠ For general reference only. Always consult your pharmacist or prescriber about drug interactions.
+    </div>
+    <div class="info-grid" id="infoGrid"></div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls" id="mainControls" style="display:none;">
+    <button class="btn btn-reset"      onclick="resetChecks()">⟳ Reset Checks</button>
+    <button class="btn btn-all"        onclick="checkAll()">✓ Mark All Taken</button>
+    <button class="btn btn-prn-toggle" id="prnToggleBtn" onclick="togglePrn()">🚫 Hide As-Needed</button>
+    <button class="btn btn-print"      onclick="print()">🖨 Print</button>
+  </div>
+
   <div class="midnight-banner" id="midnightBanner"></div>
+  <div class="prn-banner"      id="prnBanner"></div>
 
-  <div class="controls">
-    <button class="btn btn-reset" onclick="resetAll()">⟳ Reset All</button>
-    <button class="btn btn-all"   onclick="checkAll()">✓ Mark All Taken</button>
-    <button class="btn btn-print" onclick="window.print()">🖨 Print</button>
-  </div>
-
-  <div class="note-banner">
-    ⚠ <strong>Diazepam, Oxycodone, and Ondansetron are all As-Needed (PRN).</strong>
-    Take Diazepam only for muscle spasm or anxiety. Take Oxycodone only for pain.
-    Take Ondansetron only for nausea. If taking <em>both</em> Diazepam and Oxycodone,
-    always wait at least <strong>1 hour</strong> between them. Never exceed prescribed doses.
-    Finish the full Cephalexin course.
-  </div>
-
-  <p class="section-title">Dose Checklist</p>
-  <div id="checklist"></div>
-
-  <!-- ═══════════ PILL INFO ═══════════ -->
-  <p class="section-title">What Each Medication Does</p>
-  <div class="pill-grid">
-    <div class="pill-card">
-      <div class="pill-card-header"><div class="pill-icon" style="background:#E1F5EE;">💊</div>
-        <div><div class="pill-card-name">Acetaminophen 500 mg</div><div class="pill-card-generic">Tylenol — Scheduled</div></div></div>
-      <div class="pill-card-desc"><strong>Pain reliever &amp; fever reducer.</strong> Blocks pain signals in the brain. Gentler on the stomach than ibuprofen. Taken on a fixed schedule to maintain consistent coverage.</div>
+  <!-- Schedule -->
+  <div id="scheduleSection" style="display:none;">
+    <p class="section-title">Dose Checklist</p>
+    <div id="checklist"></div>
+    <p class="section-title">Full Day Schedule</p>
+    <div class="schedule-table" id="scheduleTableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th><th>Medication</th><th>Dose</th><th>Type</th><th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="scheduleBody"></tbody>
+      </table>
     </div>
-    <div class="pill-card">
-      <div class="pill-card-header"><div class="pill-icon" style="background:#FCEBEB;">💊</div>
-        <div><div class="pill-card-name">Oxycodone HCl 5 mg</div><div class="pill-card-generic">Opioid — As Needed</div></div></div>
-      <div class="pill-card-desc"><strong>Strong pain reliever.</strong> Binds to pain receptors in the brain and spinal cord. Take only when moderate-to-severe pain is present.</div>
-      <div class="pill-warn">⚠ Habit-forming. Do not exceed prescribed dose. Wait 1 hr after Diazepam.</div>
-    </div>
-    <div class="pill-card">
-      <div class="pill-card-header"><div class="pill-icon" style="background:#E6F1FB;">💊</div>
-        <div><div class="pill-card-name">Gabapentin 300 mg</div><div class="pill-card-generic">Neurontin — Scheduled</div></div></div>
-      <div class="pill-card-desc"><strong>Nerve pain reliever.</strong> Calms overactive nerve signals. Helps with burning or tingling pain and improves sleep quality during recovery.</div>
-    </div>
-    <div class="pill-card">
-      <div class="pill-card-header"><div class="pill-icon" style="background:#FAEEDA;">💊</div>
-        <div><div class="pill-card-name">Diazepam 5 mg</div><div class="pill-card-generic">Valium — As Needed</div></div></div>
-      <div class="pill-card-desc"><strong>Muscle relaxant &amp; anti-anxiety.</strong> Take <em>only</em> when experiencing muscle spasms or significant anxiety. If also taking Oxycodone, take Diazepam first and wait 1 hour.</div>
-      <div class="pill-warn">⚠ Increases drowsiness with oxycodone. Never drink alcohol.</div>
-    </div>
-    <div class="pill-card">
-      <div class="pill-card-header"><div class="pill-icon" style="background:#EAF3DE;">💊</div>
-        <div><div class="pill-card-name">Cephalexin 500 mg</div><div class="pill-card-generic">Keflex — Antibiotic</div></div></div>
-      <div class="pill-card-desc"><strong>Antibiotic.</strong> Prevents or treats infection after a procedure. Must be finished completely — stopping early allows resistant bacteria to survive.</div>
-    </div>
-    <div class="pill-card">
-      <div class="pill-card-header"><div class="pill-icon" style="background:#F1EFE8;">💊</div>
-        <div><div class="pill-card-name">Docusate Sodium 100 mg</div><div class="pill-card-generic">Colace — Stool Softener</div></div></div>
-      <div class="pill-card-desc"><strong>Stool softener.</strong> Prevents constipation caused by opioid pain medication. Take consistently while on Oxycodone.</div>
-    </div>
-    <div class="pill-card">
-      <div class="pill-card-header"><div class="pill-icon" style="background:#E1F5EE;">💊</div>
-        <div><div class="pill-card-name">Ondansetron ODT 8 mg</div><div class="pill-card-generic">Zofran — As Needed</div></div></div>
-      <div class="pill-card-desc"><strong>Anti-nausea.</strong> Dissolves on your tongue — no water needed. Take only when feeling nauseous.</div>
-    </div>
-  </div>
-
-  <!-- ═══════════ SCHEDULE TABLE ═══════════ -->
-  <p class="section-title">Full Day Schedule</p>
-  <div class="schedule-table" id="scheduleTableWrap">
-    <table>
-      <thead>
-        <tr><th>Time</th><th>Medication</th><th>Dose</th><th>Type</th><th>Notes</th></tr>
-      </thead>
-      <tbody id="scheduleBody"></tbody>
-    </table>
   </div>
 
 </div>
+</div>
 
-<script>
-// ═══════════════════════════════════════════════════════════════
-// SCHEDULE TEMPLATE
-// All offsets from wake time W (minutes)
-// ═══════════════════════════════════════════════════════════════
-const BLOCKS = [
-  {
-    offsetMins:0, label:'Morning — Wake-up', phase:'day', allPrn:false,
-    meds:[
-      {name:'Acetaminophen 500 mg',   dose:'2 tablets',           note:'With food or water',                                                        tag:'rx' },
-      {name:'Cephalexin 500 mg',      dose:'1 capsule',           note:'Take with food',                                                            tag:'rx' },
-      {name:'Docusate Sodium 100 mg', dose:'1 capsule',           note:'While taking pain meds',                                                    tag:'rx' },
-      {name:'Gabapentin 300 mg',      dose:'1 capsule',           note:'With or without food',                                                      tag:'rx' },
-      {name:'Diazepam 5 mg',          dose:'1 tablet',            note:'PRN — only if muscle spasm or anxiety. If taking, wait 1 hr before Oxycodone.', tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:60, label:'1 hr after Diazepam (if taken)', phase:'day', allPrn:true,
-    meds:[
-      {name:'Oxycodone HCl 5 mg',    dose:'1 tablet',            note:'Pain only — take only if Diazepam was taken 1 hr ago',                      tag:'prn'},
-      {name:'Ondansetron ODT 8 mg',  dose:'1 tablet (dissolve)', note:'Nausea only',                                                               tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:360, label:'Midday (+6 hrs)', phase:'day', allPrn:false,
-    meds:[
-      {name:'Acetaminophen 500 mg',   dose:'2 tablets',           note:'With food',                                                                 tag:'rx' },
-      {name:'Gabapentin 300 mg',      dose:'1 capsule',           note:'',                                                                         tag:'rx' },
-      {name:'Cephalexin 500 mg',      dose:'1 capsule',           note:'Take with food',                                                            tag:'rx' },
-      {name:'Docusate Sodium 100 mg', dose:'1 capsule',           note:'',                                                                         tag:'rx' },
-      {name:'Diazepam 5 mg',          dose:'1 tablet',            note:'PRN — only if muscle spasm or anxiety. If taking, wait 1 hr before Oxycodone.', tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:420, label:'1 hr after Diazepam (if taken)', phase:'day', allPrn:true,
-    meds:[
-      {name:'Oxycodone HCl 5 mg',    dose:'1 tablet',            note:'Pain only — take only if Diazepam was taken 1 hr ago',                      tag:'prn'},
-      {name:'Ondansetron ODT 8 mg',  dose:'1 tablet (dissolve)', note:'Nausea only',                                                               tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:600, label:'Evening (+10 hrs)', phase:'day', allPrn:false,
-    meds:[
-      {name:'Acetaminophen 500 mg',   dose:'2 tablets',           note:'With food',                                                                 tag:'rx' },
-      {name:'Gabapentin 300 mg',      dose:'1 capsule',           note:'Last daytime dose',                                                         tag:'rx' },
-      {name:'Cephalexin 500 mg',      dose:'1 capsule',           note:'Take with food — last antibiotic dose of day',                              tag:'rx' },
-      {name:'Diazepam 5 mg',          dose:'1 tablet',            note:'PRN — only if muscle spasm or anxiety. If taking, wait 1 hr before Oxycodone.', tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:660, label:'1 hr after Diazepam (if taken)', phase:'day', allPrn:true,
-    meds:[
-      {name:'Oxycodone HCl 5 mg',    dose:'1 tablet',            note:'Pain only — take only if Diazepam was taken 1 hr ago',                      tag:'prn'},
-      {name:'Ondansetron ODT 8 mg',  dose:'1 tablet (dissolve)', note:'Nausea only',                                                               tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:780, label:'Pre-Bedtime (+13 hrs)', phase:'day', allPrn:true,
-    meds:[
-      {name:'Diazepam 5 mg',          dose:'1 tablet',            note:'PRN — only if needed for sleep or spasm, 1 hr before lights-out',           tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:840, label:'Bedtime (+14 hrs)', phase:'sleep', allPrn:false,
-    meds:[
-      {name:'Acetaminophen 500 mg',   dose:'2 tablets',           note:'Take at bedtime — maintains pain coverage overnight',                       tag:'rx' },
-    ]
-  },
-  {
-    offsetMins:960, label:'Mid-Sleep (+16 hrs)', phase:'sleep', allPrn:true,
-    meds:[
-      {name:'Diazepam 5 mg',          dose:'1 tablet',            note:'PRN — only if muscle spasm wakes you overnight',                            tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:1020, label:'1 hr after Diazepam (if taken)', phase:'sleep', allPrn:true,
-    meds:[
-      {name:'Oxycodone HCl 5 mg',    dose:'1 tablet',            note:'Pain only — only if Diazepam was taken and pain wakes you',                 tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:1140, label:'Early Morning (+19 hrs)', phase:'sleep', allPrn:true,
-    meds:[
-      {name:'Diazepam 5 mg',          dose:'1 tablet',            note:'PRN — only if spasm continues overnight before waking',                    tag:'prn'},
-    ]
-  },
-  {
-    offsetMins:1200, label:'1 hr after Diazepam (if taken)', phase:'sleep', allPrn:true,
-    meds:[
-      {name:'Oxycodone HCl 5 mg',    dose:'1 tablet',            note:'Pain only — only if still needed before waking',                           tag:'prn'},
-    ]
-  },
-];
-
-// ═══════════════════════════════════════════════════════════════
-// HELPERS
-// ═══════════════════════════════════════════════════════════════
-function parseWake(v) { const [h,m]=v.split(':').map(Number); return h*60+(m||0); }
-
-function fmtTime(t) {
-  const n=((t%1440)+1440)%1440, h24=Math.floor(n/60), m=n%60;
-  const ap=h24<12?'AM':'PM', h12=h24%12||12;
-  return `${h12}:${String(m).padStart(2,'0')} ${ap}`;
-}
-
-function isNext(W,o) { return (W+o)>=1440; }
-
-function ckSVG() {
-  return `<svg width="11" height="8" viewBox="0 0 11 8">
-    <polyline points="1,4 4,7 10,1" stroke="white" stroke-width="1.8"
-      fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-}
-
-// ═══════════════════════════════════════════════════════════════
-// RENDER CHECKLIST
-// ═══════════════════════════════════════════════════════════════
-function renderChecklist(W) {
-  const cl=document.getElementById('checklist');
-  cl.innerHTML='';
-  let slept=false;
-
-  BLOCKS.forEach(b => {
-    const abs=W+b.offsetMins, ts=fmtTime(abs), nd=isNext(W,b.offsetMins);
-
-    if(b.phase==='sleep' && !slept) {
-      slept=true;
-      const d=document.createElement('div');
-      d.className='sleep-divider';
-      d.innerHTML=`<div class="sleep-divider-line"></div>
-        <div class="sleep-divider-pill">🌙 Sleep Period — Overnight Doses</div>
-        <div class="sleep-divider-line"></div>`;
-      cl.appendChild(d);
-    }
-
-    let bc='time-badge';
-    if(b.phase==='sleep' && !nd) bc+=' night';
-    if(nd) bc='time-badge next-day';
-    const ndL=nd?` <span style="font-size:0.68rem;opacity:0.82;">(next day)</span>`:'';
-
-    const rows=b.meds.map(m=>`
-      <div class="med-row${m.tag==='prn'?' is-prn':''}" onclick="toggle(this)">
-        <div class="checkbox">${ckSVG()}</div>
-        <div class="med-info">
-          <div class="med-name">${m.name}</div>
-          <div class="med-dose">${m.dose}${m.note?' — '+m.note:''}</div>
-        </div>
-        <span class="med-tag tag-${m.tag}">${m.tag==='prn'?'As Needed':'Scheduled'}</span>
-      </div>`).join('');
-
-    const hasMixedPrn=!b.allPrn && b.meds.some(m=>m.tag==='prn');
-    const prnHint=hasMixedPrn
-      ?`<div class="diaz-note-row">
-          💊 <span><strong>Diazepam (As Needed)</strong> — take only for muscle spasm or anxiety. If taken, Oxycodone window opens 1 hr later.</span>
-        </div>`:'';
-
-    const wrap=document.createElement('div');
-    wrap.className='time-block'+(b.allPrn?' all-prn':'');
-    wrap.innerHTML=`
-      <div class="time-header">
-        <span class="${bc}">${ts} — ${b.label}${ndL}</span>
-        <div class="time-line"></div>
-      </div>
-      ${rows}${prnHint}`;
-    cl.appendChild(wrap);
-  });
-}
-
-// ═══════════════════════════════════════════════════════════════
-// RENDER TABLE
-// ═══════════════════════════════════════════════════════════════
-function renderTable(W) {
-  const tb=document.getElementById('scheduleBody');
-  tb.innerHTML='';
-  let slept=false;
-
-  BLOCKS.forEach(b => {
-    const abs=W+b.offsetMins, ts=fmtTime(abs), nd=isNext(W,b.offsetMins);
-
-    if(b.phase==='sleep' && !slept) {
-      slept=true;
-      const s=document.createElement('tr');
-      s.className='table-sleep-row';
-      s.innerHTML=`<td colspan="5">🌙 Sleep Period — Overnight Doses</td>`;
-      tb.appendChild(s);
-    }
-
-    const tc=nd?'td-time next-day':(b.phase==='sleep'?'td-time night':'td-time');
-    const ndTag=nd?` <span style="font-size:0.7em;color:#8b7ecc;">(+1)</span>`:'';
-
-    b.meds.forEach(m => {
-      const tr=document.createElement('tr');
-      if(m.tag==='prn') tr.classList.add('tr-prn');
-      tr.innerHTML=`
-        <td class="${tc}">${ts}${ndTag}</td>
-        <td>${m.name}</td>
-        <td>${m.dose}</td>
-        <td class="${m.tag==='prn'?'td-prn':'td-rx'}">${m.tag==='prn'?'As Needed ⚡':'Scheduled'}</td>
-        <td class="td-note">${m.note}</td>`;
-      tb.appendChild(tr);
-    });
-  });
-}
-
-// ═══════════════════════════════════════════════════════════════
-// MIDNIGHT BANNER ONLY (no late-wake message)
-// ═══════════════════════════════════════════════════════════════
-function updateBanner(W) {
-  const banner=document.getElementById('midnightBanner');
-  const crossing=BLOCKS.filter(b=>isNext(W,b.offsetMins));
-
-  if(crossing.length) {
-    const times=[...new Set(crossing.map(b=>fmtTime(W+b.offsetMins)))].join(', ');
-    banner.innerHTML=`🌙 Some overnight doses fall <strong>after midnight</strong> (${times}) — shown in <span style="color:#6b5fc7;font-weight:600;">purple</span>. These belong to the same waking cycle. Take them before starting your next day.`;
-    banner.classList.add('visible');
-  } else {
-    banner.classList.remove('visible');
-    banner.innerHTML='';
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// SUMMARY
-// ═══════════════════════════════════════════════════════════════
-function updateSummary(W) {
-  document.getElementById('wakeSummary').textContent=
-    `Schedule active — first dose at ${fmtTime(W)} · Bedtime ~${fmtTime(W+840)}`;
-  document.getElementById('wakeSub').textContent=
-    `Last overnight PRN dose window: ${fmtTime(W+1200)}`;
-}
-
-// ═══════════════════════════════════════════════════════════════
-// PRN TOGGLE
-// ═══════════════════════════════════════════════════════════════
-let prnVisible=true;
-
-function setPrn(show) {
-  prnVisible=show;
-  const cl=document.getElementById('checklist');
-  const tw=document.getElementById('scheduleTableWrap');
-  const bS=document.getElementById('btnShow');
-  const bH=document.getElementById('btnHide');
-  if(show) {
-    cl.classList.remove('prn-hidden');
-    tw.classList.remove('prn-hidden');
-    bS.className='active-show'; bH.className='';
-  } else {
-    cl.classList.add('prn-hidden');
-    tw.classList.add('prn-hidden');
-    bS.className=''; bH.className='active-hide';
-  }
-  updateProgress();
-}
-
-// ═══════════════════════════════════════════════════════════════
-// PROGRESS — visible rows only
-// ═══════════════════════════════════════════════════════════════
-function updateProgress() {
-  const all=[...document.querySelectorAll('.med-row')];
-  const vis=all.filter(r=>r.offsetParent!==null);
-  const done=vis.filter(r=>r.classList.contains('taken'));
-  const pct=vis.length?Math.round(done.length/vis.length*100):0;
-  document.getElementById('progressFill').style.width=pct+'%';
-  document.getElementById('progressLabel').textContent=
-    `${done.length} / ${vis.length} doses taken`;
-}
-
-function toggle(row) { row.classList.toggle('taken'); updateProgress(); }
-
-function resetAll() {
-  if(!confirm('Reset all checkboxes for a new day?')) return;
-  document.querySelectorAll('.med-row.taken').forEach(r=>r.classList.remove('taken'));
-  document.getElementById('datePicker').valueAsDate=new Date();
-  updateProgress();
-}
-function checkAll() {
-  [...document.querySelectorAll('.med-row')]
-    .filter(r=>r.offsetParent!==null)
-    .forEach(r=>r.classList.add('taken'));
-  updateProgress();
-}
-
-// ═══════════════════════════════════════════════════════════════
-// MAIN RECALCULATE
-// ═══════════════════════════════════════════════════════════════
-function recalculate() {
-  const v=document.getElementById('wakeInput').value;
-  if(!v) return;
-  const W=parseWake(v);
-  renderChecklist(W);
-  renderTable(W);
-  updateBanner(W);
-  updateSummary(W);
-  setPrn(prnVisible);
-}
-
-document.getElementById('wakeInput').addEventListener('input',  recalculate);
-document.getElementById('wakeInput').addEventListener('change', recalculate);
-document.getElementById('datePicker').valueAsDate=new Date();
-recalculate();
-</script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>
