@@ -1,0 +1,350 @@
+/* ═══════════════════════════════════════════════
+   DARK MODE VARIABLES
+   All colours are redefined here.
+   Every var(--xxx) in the rest of the stylesheet
+   picks up the new values automatically.
+═══════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --green-deep:   #0d6b52;
+  --green-mid:    #17a077;
+  --green-bright: #25c492;
+  --green-light:  #6ddbb8;
+  --green-pale:   #0e2e25;
+  --amber:        #e09132;
+  --amber-pale:   #2e2008;
+  --gray-dark:    #e8e6df;
+  --gray-mid:     #a09e98;
+  --gray-light:   #3a3835;
+  --gray-pale:    #1e1d1b;
+  --white:        #252422;
+  --red:          #e05555;
+  --red-pale:     #2e1010;
+  --purple:       #7b6fd4;
+  --purple-light: #d4d0f5;
+  --navy:         #2a3f6e;
+  --navy-light:   #90caf9;
+}
+
+/* ── body & page background ── */
+[data-theme="dark"] body {
+  background: #141412;
+  color: var(--gray-dark);
+}
+
+[data-theme="dark"] #appScreen {
+  background: #141412;
+}
+
+/* ── header ── */
+[data-theme="dark"] header {
+  background: #0a1f18;
+  border: 1px solid #1a3329;
+}
+
+[data-theme="dark"] .demo-chip-btn {
+  background: rgba(186, 117, 23, 0.2);
+  border-color: rgba(186, 117, 23, 0.4);
+}
+
+[data-theme="dark"] .user-chip {
+  background: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .user-chip:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme="dark"] .date-field input[type="date"] {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .wake-input {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+[data-theme="dark"] .wake-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ── user menu ── */
+[data-theme="dark"] .user-menu {
+  background: #1e1d1b;
+  border-color: #3a3835;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] .user-menu-header strong { color: var(--gray-dark); }
+[data-theme="dark"] .user-menu-item          { color: var(--gray-dark); }
+[data-theme="dark"] .user-menu-item:hover    { background: #2a2926; }
+[data-theme="dark"] .user-menu-item.danger:hover { background: var(--red-pale); }
+[data-theme="dark"] .user-menu-divider       { background: #3a3835; }
+
+/* ── setup panel ── */
+[data-theme="dark"] .setup-panel {
+  background: #1e1d1b;
+  border-color: #3a3835;
+}
+[data-theme="dark"] .setup-panel-head {
+  background: #0a1f18;
+  border-bottom: 1px solid #1a3329;
+}
+
+[data-theme="dark"] .med-form-row input,
+[data-theme="dark"] .med-form-row select {
+  background: #252422;
+  border-color: #3a3835;
+  color: var(--gray-dark);
+  color-scheme: dark;
+}
+[data-theme="dark"] .med-form-row input:focus,
+[data-theme="dark"] .med-form-row select:focus {
+  border-color: var(--green-bright);
+  box-shadow: 0 0 0 3px rgba(37, 196, 146, 0.15);
+}
+[data-theme="dark"] .med-form-row input::placeholder {
+  color: #3a3835;
+}
+
+/* med entry card on mobile */
+[data-theme="dark"] .med-form-row {
+  background: #252422;
+  border-color: #3a3835;
+}
+
+[data-theme="dark"] .prn-subrow {
+  background: #2e2008;
+}
+[data-theme="dark"] .prn-subrow input {
+  background: #1e1d1b;
+  border-color: #8b6a1a;
+  color: var(--gray-dark);
+}
+
+[data-theme="dark"] .btn-del-med {
+  background: var(--red-pale);
+  color: var(--red);
+}
+[data-theme="dark"] .btn-del-med:hover { background: #3e1515; }
+
+[data-theme="dark"] .setup-footer {
+  border-top-color: #2a2926;
+  background: #1e1d1b;
+}
+
+[data-theme="dark"] .btn-add-med {
+  border-color: var(--green-bright);
+  color: var(--green-light);
+}
+[data-theme="dark"] .btn-add-med:hover {
+  background: var(--green-pale);
+}
+
+/* ── db loading banner ── */
+[data-theme="dark"] .db-loading-banner {
+  background: var(--green-pale);
+  color: var(--green-light);
+}
+
+/* ── info section ── */
+[data-theme="dark"] .info-section-head h3 { color: var(--green-light); }
+
+[data-theme="dark"] .info-card {
+  background: #1e1d1b;
+  border-color: #3a3835;
+}
+[data-theme="dark"] .info-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .info-card-name { color: var(--gray-dark); }
+[data-theme="dark"] .info-card-sub  { color: var(--gray-mid); }
+[data-theme="dark"] .info-card-desc { color: var(--gray-mid); }
+
+[data-theme="dark"] .interaction-flag {
+  background: var(--red-pale);
+  color: var(--red);
+}
+[data-theme="dark"] .warn-flag {
+  background: var(--amber-pale);
+  color: var(--amber);
+}
+
+/* skeleton in dark mode */
+[data-theme="dark"] .info-card.skeleton .info-card-name,
+[data-theme="dark"] .info-card.skeleton .info-card-desc,
+[data-theme="dark"] .info-card.skeleton .info-card-sub {
+  background: linear-gradient(90deg, #2a2926 25%, #333230 50%, #2a2926 75%);
+  background-size: 200% 100%;
+}
+
+/* ── controls ── */
+[data-theme="dark"] .btn {
+  background: #1e1d1b;
+}
+[data-theme="dark"] .btn-reset  { border-color: var(--red);          color: var(--red); }
+[data-theme="dark"] .btn-all    { border-color: var(--green-bright);  color: var(--green-light); }
+[data-theme="dark"] .btn-print  { background: var(--green-deep);      color: white; }
+[data-theme="dark"] .btn-prn-toggle { border-color: var(--amber);     color: var(--amber); }
+
+[data-theme="dark"] .btn-reset:hover      { background: var(--red-pale); }
+[data-theme="dark"] .btn-all:hover        { background: var(--green-pale); }
+[data-theme="dark"] .btn-print:hover      { background: var(--green-mid); }
+[data-theme="dark"] .btn-prn-toggle:hover { background: var(--amber-pale); }
+
+/* ── banners ── */
+[data-theme="dark"] .midnight-banner {
+  background: #1a1730;
+  color: var(--purple-light);
+  border-color: var(--purple);
+}
+[data-theme="dark"] .prn-banner {
+  background: var(--amber-pale);
+  color: var(--amber);
+}
+
+/* ── checklist ── */
+[data-theme="dark"] .section-title { color: var(--green-light); }
+
+[data-theme="dark"] .med-row {
+  background: #1e1d1b;
+  border-color: #3a3835;
+}
+[data-theme="dark"] .med-row:hover  { background: #252422; }
+[data-theme="dark"] .med-row:active { background: var(--green-pale); }
+[data-theme="dark"] .med-row.taken  {
+  background: var(--green-pale);
+  border-color: var(--green-mid);
+}
+[data-theme="dark"] .med-row.taken .med-name { color: var(--gray-mid); }
+
+[data-theme="dark"] .time-line { background: #3a3835; }
+
+[data-theme="dark"] .sleep-divider-line { border-color: #3a3835; }
+[data-theme="dark"] .sleep-divider-pill {
+  background: #1a2540;
+  color: var(--navy-light);
+}
+
+[data-theme="dark"] .tag-rx  { background: var(--green-pale); color: var(--green-light); }
+[data-theme="dark"] .tag-prn { background: var(--amber-pale); color: var(--amber); }
+
+/* ── schedule table ── */
+[data-theme="dark"] .schedule-table {
+  background: #1e1d1b;
+  border-color: #3a3835;
+}
+[data-theme="dark"] thead th {
+  background: #0a1f18;
+  color: var(--green-light);
+}
+[data-theme="dark"] tbody tr { border-bottom-color: #2a2926; }
+[data-theme="dark"] tbody td { color: var(--gray-dark); }
+[data-theme="dark"] tbody tr:nth-child(even) td { background: #252422; }
+[data-theme="dark"] .table-sleep-row td {
+  background: #1a2540 !important;
+  color: var(--navy-light);
+}
+
+/* ── disclaimer ── */
+[data-theme="dark"] .disclaimer {
+  background: #1e1d1b;
+  border-color: #3a3835;
+  color: var(--gray-mid);
+}
+
+/* ── demo save banner ── */
+[data-theme="dark"] .demo-save-banner {
+  background: linear-gradient(90deg, #081a14 0%, #0a1f18 100%);
+}
+
+/* ── auth modal ── */
+[data-theme="dark"] .auth-card {
+  background: #1e1d1b;
+}
+[data-theme="dark"] .auth-card-head {
+  background: #0a1f18;
+}
+[data-theme="dark"] .auth-tabs {
+  border-bottom-color: #3a3835;
+  background: #1e1d1b;
+}
+[data-theme="dark"] .auth-tab {
+  color: var(--gray-mid);
+  background: #1e1d1b;
+}
+[data-theme="dark"] .auth-tab.active {
+  color: var(--green-light);
+  border-bottom-color: var(--green-bright);
+}
+[data-theme="dark"] .auth-body {
+  background: #1e1d1b;
+}
+[data-theme="dark"] .auth-field label { color: var(--gray-mid); }
+[data-theme="dark"] .auth-field input {
+  background: #252422;
+  border-color: #3a3835;
+  color: var(--gray-dark);
+  color-scheme: dark;
+}
+[data-theme="dark"] .auth-field input:focus {
+  border-color: var(--green-bright);
+  box-shadow: 0 0 0 3px rgba(37, 196, 146, 0.15);
+}
+[data-theme="dark"] .auth-btn {
+  background: var(--green-mid);
+}
+[data-theme="dark"] .auth-btn:hover { background: var(--green-bright); }
+[data-theme="dark"] .auth-btn.google {
+  background: #252422;
+  border-color: #3a3835;
+  color: var(--gray-dark);
+}
+[data-theme="dark"] .auth-btn.google:hover { background: #2e2d2b; }
+[data-theme="dark"] .auth-btn:disabled { background: #3a3835; color: var(--gray-mid); }
+[data-theme="dark"] .auth-close-btn {
+  background: #2a2926;
+  color: var(--gray-mid);
+}
+[data-theme="dark"] .auth-close-btn:hover { background: #3a3835; }
+[data-theme="dark"] .auth-divider { color: #3a3835; }
+[data-theme="dark"] .auth-divider::before,
+[data-theme="dark"] .auth-divider::after { background: #3a3835; }
+[data-theme="dark"] .auth-saving-notice {
+  background: var(--green-pale);
+  color: var(--green-light);
+}
+[data-theme="dark"] .auth-error {
+  background: var(--red-pale);
+  color: var(--red);
+}
+[data-theme="dark"] .auth-success {
+  background: var(--green-pale);
+  color: var(--green-light);
+}
+[data-theme="dark"] .auth-forgot button { color: var(--green-light); }
+
+/* ── demo hero ── */
+[data-theme="dark"] .demo-hero {
+  background: linear-gradient(145deg, #030f0b 0%, #051a13 40%, #081f17 75%, #0a2b1e 100%);
+}
+
+/* ── db badge ── */
+[data-theme="dark"] .db-badge {
+  background: var(--green-pale);
+  color: var(--green-light);
+}
+
+/* ── save confirm ── */
+[data-theme="dark"] .save-confirm-msg { color: var(--green-light); }
+
+/* ── progress label ── */
+[data-theme="dark"] .progress-label { color: var(--green-light); }
+
+/* ── misc ── */
+[data-theme="dark"] .header-strip {
+  border-top-color: rgba(255, 255, 255, 0.07);
+}
+
+/* prevent white flash on page load in dark mode */
+[data-theme="dark"] html,
+[data-theme="dark"] body {
+  background-color: #141412;
+}

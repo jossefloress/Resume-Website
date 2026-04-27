@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💊</text></svg>">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MedTracker">
+<meta name="mobile-web-app-capable" content="yes">
 <title>MedTracker — Free Daily Medication Tracker</title>
 
 <!-- SEO -->
@@ -19,6 +24,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/dark-styles.css">
 </head>
 <body>
 
@@ -46,7 +52,7 @@
     <!-- CTA -->
     <div class="demo-hero-cta">
       <button class="hero-btn hero-btn-primary" onclick="openAuthModal('signup')">
-        Create Free Account — Save My Meds
+        Create Free Account
       </button>
       <button class="hero-btn hero-btn-secondary" onclick="openAuthModal('signin')">
         Sign In
@@ -130,7 +136,7 @@
           <button onclick="resetPassword()">Forgot password?</button>
         </div>
         <button class="auth-btn" id="btnSignIn" onclick="signIn()">
-          Sign In &amp; Save Medications
+          Sign In
         </button>
         <div class="auth-divider">or</div>
         <button class="auth-btn google" onclick="signInGoogle()">
@@ -160,7 +166,7 @@
             autocomplete="new-password" onkeydown="if(event.key==='Enter') signUp()">
         </div>
         <button class="auth-btn" id="btnSignUp" onclick="signUp()">
-          Create Account &amp; Save Medications
+          Create Account
         </button>
         <div class="auth-divider">or</div>
         <button class="auth-btn google" onclick="signInGoogle()">
@@ -191,6 +197,9 @@
         <p>Enter your medications — your schedule builds itself automatically</p>
       </div>
       <div class="chip-wrap" id="chipWrap">
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
         <button class="demo-chip-btn" id="demoChipBtn" onclick="openAuthModal('signin')">
           🧪 Demo Mode — Sign In
         </button>
