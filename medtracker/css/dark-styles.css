@@ -348,3 +348,21 @@
 [data-theme="dark"] body {
   background-color: #141412;
 }
+
+/* ═══════════════════════════════════════════════
+   DARK MODE — SIDEBAR & BOTTOM NAV
+═══════════════════════════════════════════════ */
+[data-theme="dark"] .sidebar {
+  background: #0a1f18;
+  border-right: 1px solid #1a3329;
+}
+
+[data-theme="dark"] .bottom-nav {
+  background: #1e1d1b;
+  border-top-color: #3a3835;
+}
+[data-theme="dark"] .bottom-nav-item        { color: var(--gray-mid); }
+[data-theme="dark"] .bottom-nav-item.active { color: var(--green-light); }
+
+[data-theme="dark"] .empty-state-title { color: var(--gray-dark); }
+[data-theme="dark"] .empty-state-sub   { color: var(--gray-mid); }

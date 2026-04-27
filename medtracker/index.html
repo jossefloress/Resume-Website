@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💊</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💊</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,17 +10,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <title>MedTracker — Free Daily Medication Tracker</title>
 
-<!-- SEO -->
-<meta name="description" content="MedTracker is a free daily medication schedule tracker. Enter your prescriptions and get an auto-generated dose checklist, timing guide, and drug interaction alerts — no account required to get started.">
-<meta name="keywords"    content="medication tracker, pill schedule, drug interactions, daily medication reminder, prescription organizer, free medication tracker">
+<meta name="description" content="MedTracker is a free daily medication schedule tracker.">
 <meta name="robots"      content="index, follow">
-<meta name="author"      content="MedTracker">
-
-<!-- Open Graph -->
-<meta property="og:title"       content="MedTracker — Free Daily Medication Tracker">
-<meta property="og:description" content="Auto-generate your daily medication schedule with dose timing and drug interaction alerts. Free, no account required to start.">
-<meta property="og:type"        content="website">
-<meta name="theme-color"        content="#085041">
+<meta name="theme-color" content="#085041">
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
@@ -29,8 +21,7 @@
 <body>
 
 <!-- ═══════════════════════════════════════════════
-     DEMO HERO BANNER
-     Visible by default. Hidden after login.
+     DEMO HERO
 ═══════════════════════════════════════════════ -->
 <div id="demoHero" class="demo-hero">
   <div class="demo-hero-inner">
@@ -40,48 +31,29 @@
       Your free daily medication schedule — auto-generated from your prescriptions.<br>
       No account needed to get started.
     </p>
-
-    <!-- Feature bullets -->
     <ul class="demo-hero-features">
       <li><span class="feat-icon">⏰</span> Auto-builds your dose schedule from wake time</li>
       <li><span class="feat-icon">🔴</span> Flags drug interactions automatically</li>
       <li><span class="feat-icon">✅</span> Tap-to-check daily progress tracker</li>
       <li><span class="feat-icon">🖨</span> Print-ready schedule</li>
     </ul>
-
-    <!-- CTA -->
     <div class="demo-hero-cta">
-      <button class="hero-btn hero-btn-primary" onclick="openAuthModal('signup')">
-        Create Free Account
-      </button>
-      <button class="hero-btn hero-btn-secondary" onclick="openAuthModal('signin')">
-        Sign In
-      </button>
+      <button class="hero-btn hero-btn-primary"   onclick="openAuthModal('signup')">Create Free Account</button>
+      <button class="hero-btn hero-btn-secondary" onclick="openAuthModal('signin')">Sign In</button>
     </div>
-
-    <div class="demo-hero-divider">
-      <span>or just explore — no account needed</span>
-    </div>
-
-    <button class="hero-btn hero-btn-ghost" onclick="dismissDemoHero()">
-      Continue in Demo Mode →
-    </button>
-
-    <p class="demo-hero-note">
-      💾 Sign in or create a free account to save your medications across all your devices.
-    </p>
-
+    <div class="demo-hero-divider"><span>or just explore — no account needed</span></div>
+    <button class="hero-btn hero-btn-ghost" onclick="dismissDemoHero()">Continue in Demo Mode →</button>
+    <p class="demo-hero-note">💾 Sign in or create a free account to save your medications across all your devices.</p>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
      STICKY DEMO SAVE BANNER
-     Shown after hero is dismissed, while still in demo mode.
 ═══════════════════════════════════════════════ -->
 <div id="demoSaveBanner" class="demo-save-banner">
   <div class="dsb-icon">💾</div>
   <div class="dsb-text">
-    <strong>Demo Mode — your medications aren't saved to an account yet</strong>
+    <strong>Demo Mode — your medications aren't saved yet</strong>
     <span>Sign in or create a free account to save your medications and access them from any device.</span>
   </div>
   <div class="dsb-actions">
@@ -96,28 +68,22 @@
 ═══════════════════════════════════════════════ -->
 <div id="authModal" class="auth-modal-overlay">
   <div class="auth-card">
-
     <div class="auth-card-head">
       <div class="auth-logo">💊</div>
       <h2>MedTracker</h2>
       <p>Save your medications and access from any device</p>
     </div>
-
     <div class="auth-tabs">
       <button class="auth-tab active" id="tabSignIn" onclick="switchTab('signin')">Sign In</button>
       <button class="auth-tab"        id="tabSignUp" onclick="switchTab('signup')">Create Account</button>
     </div>
-
     <div class="auth-body">
-
       <div class="auth-close-row">
         <button class="auth-close-btn" onclick="closeAuthModal()" title="Continue in demo mode">✕</button>
       </div>
-
       <div class="auth-saving-notice" id="authSavingNotice">
         ✅ Sign in to load your saved medications from your account.
       </div>
-
       <div class="auth-error"   id="authError"></div>
       <div class="auth-success" id="authSuccess"></div>
 
@@ -132,12 +98,8 @@
           <input type="password" id="siPassword" placeholder="Your password"
             autocomplete="current-password" onkeydown="if(event.key==='Enter') signIn()">
         </div>
-        <div class="auth-forgot">
-          <button onclick="resetPassword()">Forgot password?</button>
-        </div>
-        <button class="auth-btn" id="btnSignIn" onclick="signIn()">
-          Sign In
-        </button>
+        <div class="auth-forgot"><button onclick="resetPassword()">Forgot password?</button></div>
+        <button class="auth-btn" id="btnSignIn" onclick="signIn()">Sign In</button>
         <div class="auth-divider">or</div>
         <button class="auth-btn google" onclick="signInGoogle()">
           <svg width="17" height="17" viewBox="0 0 48 48">
@@ -165,9 +127,7 @@
           <input type="password" id="suPassword" placeholder="Minimum 6 characters"
             autocomplete="new-password" onkeydown="if(event.key==='Enter') signUp()">
         </div>
-        <button class="auth-btn" id="btnSignUp" onclick="signUp()">
-          Create Account
-        </button>
+        <button class="auth-btn" id="btnSignUp" onclick="signUp()">Create Account</button>
         <div class="auth-divider">or</div>
         <button class="auth-btn google" onclick="signInGoogle()">
           <svg width="17" height="17" viewBox="0 0 48 48">
@@ -179,145 +139,265 @@
           Sign up with Google
         </button>
       </div>
-
     </div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     APP (always in DOM — visible behind hero)
+     APP SHELL
 ═══════════════════════════════════════════════ -->
 <div id="appScreen">
-<div class="page">
 
-  <header>
-    <div class="header-top">
-      <div class="header-titles">
-        <h1>Daily Medication Schedule</h1>
-        <p>Enter your medications — your schedule builds itself automatically</p>
+  <!-- ── SIDEBAR (desktop) ── -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="sidebar-logo-icon">💊</span>
+      <span class="sidebar-logo-text">MedTracker</span>
+    </div>
+
+    <div class="sidebar-nav">
+      <button class="sidebar-item active" data-tab="today" onclick="switchTab_app('today')">
+        <span class="sidebar-icon">✅</span>
+        <span class="sidebar-label">Today</span>
+      </button>
+      <button class="sidebar-item" data-tab="medications" onclick="switchTab_app('medications')">
+        <span class="sidebar-icon">💊</span>
+        <span class="sidebar-label">Medications</span>
+      </button>
+      <button class="sidebar-item" data-tab="schedule" onclick="switchTab_app('schedule')">
+        <span class="sidebar-icon">📋</span>
+        <span class="sidebar-label">Schedule</span>
+      </button>
+      <button class="sidebar-item" data-tab="info" onclick="switchTab_app('info')">
+        <span class="sidebar-icon">ℹ️</span>
+        <span class="sidebar-label">Drug Info</span>
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle sidebar-theme" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+        <span class="sidebar-label">Dark Mode</span>
+      </button>
+      <div class="sidebar-divider"></div>
+
+      <!-- Shown only in demo mode -->
+      <button class="demo-chip-btn sidebar-demo" id="demoChipBtnSidebar" onclick="openAuthModal('signin')">
+        🧪 Demo Mode — Sign In
+      </button>
+
+      <!-- Shown only when logged in -->
+      <button class="user-chip sidebar-user" id="userChipSidebar" style="display:none;" onclick="toggleUserMenu()">
+        <div class="user-avatar" id="userAvatarSidebar">?</div>
+        <div class="sidebar-user-info">
+          <div class="user-chip-name" id="userChipNameSidebar"></div>
+          <div class="user-chip-sub">▾ Account</div>
+        </div>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div class="app-main">
+
+    <!-- Shared header strip (always visible) -->
+    <header>
+      <div class="header-top">
+        <div class="header-titles">
+          <h1 id="pageTitle">Today's Schedule</h1>
+          <p  id="pageSubtitle">Track your doses for today</p>
+        </div>
       </div>
-      <div class="chip-wrap" id="chipWrap">
-        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">
-          <span class="theme-icon">🌙</span>
+
+      <!-- User menu (shared, positioned via JS) -->
+      <div class="user-menu" id="userMenu">
+        <div class="user-menu-header">
+          <strong id="menuName">—</strong>
+          <span   id="menuEmail">—</span>
+        </div>
+        <div class="user-menu-divider"></div>
+        <button class="user-menu-item" onclick="clearUserData()">🗑 Clear My Medications</button>
+        <div class="user-menu-divider"></div>
+        <button class="user-menu-item danger" onclick="signOutUser()">↩ Sign Out</button>
+      </div>
+
+      <div class="header-meta">
+        <div class="date-field">
+          <span>Date:</span>
+          <input type="date" id="datePicker">
+        </div>
+        <div class="progress-row">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <span class="progress-label" id="progressLabel">0 / 0 doses taken</span>
+        </div>
+      </div>
+
+      <div class="header-strip">
+        <label for="wakeInput">⏰ Wake-up time:</label>
+        <input type="time" id="wakeInput" class="wake-input" value="09:00">
+        <div class="wake-meta">
+          <span class="wake-summary" id="wakeSummary">Enter medications to generate your schedule</span>
+          <span class="wake-sub"     id="wakeSub"></span>
+        </div>
+      </div>
+    </header>
+
+    <div class="db-loading-banner" id="dbLoadingBanner">
+      <div class="spinner-green"></div>
+      Loading drug database…
+    </div>
+
+    <!-- ══════════════════════════════════════
+         TAB: TODAY
+    ══════════════════════════════════════ -->
+    <div class="tab-panel active" id="tab-today">
+
+      <!-- Controls -->
+      <div class="controls" id="mainControls">
+        <button class="btn btn-reset"      onclick="resetChecks()">⟳ Reset</button>
+        <button class="btn btn-all"        onclick="checkAll()">✓ Mark All</button>
+        <button class="btn btn-prn-toggle" id="prnToggleBtn" onclick="togglePrn()">🚫 Hide PRN</button>
+        <button class="btn btn-print"      onclick="print()">🖨 Print</button>
+      </div>
+
+      <div class="midnight-banner" id="midnightBanner"></div>
+      <div class="prn-banner"      id="prnBanner"></div>
+
+      <!-- Empty state — shown before schedule is generated -->
+      <div class="empty-state" id="todayEmpty">
+        <div class="empty-state-icon">📋</div>
+        <div class="empty-state-title">No schedule yet</div>
+        <div class="empty-state-sub">Add your medications and tap "Save &amp; Generate" to build your daily schedule.</div>
+        <button class="empty-state-btn" onclick="switchTab_app('medications')">
+          💊 Go to Medications
         </button>
-        <button class="demo-chip-btn" id="demoChipBtn" onclick="openAuthModal('signin')">
-          🧪 Demo Mode — Sign In
-        </button>
-        <button class="user-chip" id="userChip" style="display:none;" onclick="toggleUserMenu()">
-          <div class="user-avatar" id="userAvatar">?</div>
-          <div>
-            <div class="user-chip-name" id="userChipName"></div>
-            <div class="user-chip-sub">▾ Account</div>
+      </div>
+
+      <div id="scheduleSection">
+        <p class="section-title">Dose Checklist</p>
+        <div id="checklist"></div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         TAB: MEDICATIONS
+    ══════════════════════════════════════ -->
+    <div class="tab-panel" id="tab-medications">
+      <div class="setup-panel">
+        <div class="setup-body" id="setupBody">
+          <div class="med-form-labels">
+            <span>Medication Name</span>
+            <span>Dose</span>
+            <span>Pills / Amount</span>
+            <span>Frequency</span>
+            <span>Food Note</span>
+            <span></span>
           </div>
-        </button>
-        <div class="user-menu" id="userMenu">
-          <div class="user-menu-header">
-            <strong id="menuName">—</strong>
-            <span   id="menuEmail">—</span>
-          </div>
-          <div class="user-menu-divider"></div>
-          <button class="user-menu-item" onclick="clearUserData()">🗑 Clear My Medications</button>
-          <div class="user-menu-divider"></div>
-          <button class="user-menu-item danger" onclick="signOutUser()">↩ Sign Out</button>
+          <div id="medRows"></div>
+        </div>
+        <div class="setup-footer" id="setupFooter">
+          <button class="btn-add-med"  onclick="addMedRow()">+ Add Medication</button>
+          <button class="btn-generate" onclick="generate()">⚡ Save &amp; Generate</button>
+          <span id="saveConfirmMsg" class="save-confirm-msg">✔ Saved</span>
         </div>
       </div>
     </div>
 
-    <div class="header-meta">
-      <div class="date-field">
-        <span>Date:</span>
-        <input type="date" id="datePicker">
+    <!-- ══════════════════════════════════════
+         TAB: SCHEDULE
+    ══════════════════════════════════════ -->
+    <div class="tab-panel" id="tab-schedule">
+
+      <!-- Empty state -->
+      <div class="empty-state" id="scheduleEmpty">
+        <div class="empty-state-icon">🗓</div>
+        <div class="empty-state-title">No schedule generated</div>
+        <div class="empty-state-sub">Add your medications first, then come back here to see your full day schedule.</div>
+        <button class="empty-state-btn" onclick="switchTab_app('medications')">
+          💊 Go to Medications
+        </button>
       </div>
-      <div class="progress-row">
-        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-        <span class="progress-label" id="progressLabel">0 / 0 doses taken</span>
+
+      <div id="scheduleTableSection">
+        <p class="section-title">Full Day Schedule</p>
+        <div class="schedule-table" id="scheduleTableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th><th>Medication</th><th>Dose</th><th>Type</th><th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleBody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <div class="header-strip">
-      <label for="wakeInput">⏰ Wake-up time:</label>
-      <input type="time" id="wakeInput" class="wake-input" value="09:00">
-      <div class="wake-meta">
-        <span class="wake-summary" id="wakeSummary">Enter medications to generate your schedule</span>
-        <span class="wake-sub"     id="wakeSub"></span>
+    <!-- ══════════════════════════════════════
+         TAB: INFO
+    ══════════════════════════════════════ -->
+    <div class="tab-panel" id="tab-info">
+
+      <!-- Empty state -->
+      <div class="empty-state" id="infoEmpty">
+        <div class="empty-state-icon">ℹ️</div>
+        <div class="empty-state-title">No drug information yet</div>
+        <div class="empty-state-sub">Add medications to see drug information and interaction warnings here.</div>
+        <button class="empty-state-btn" onclick="switchTab_app('medications')">
+          💊 Go to Medications
+        </button>
       </div>
-    </div>
-  </header>
 
-  <div class="db-loading-banner" id="dbLoadingBanner">
-    <div class="spinner-green"></div>
-    Loading drug database…
-  </div>
-
-  <!-- Setup Panel -->
-  <div class="setup-panel">
-    <div class="setup-panel-head">
-      <div>
-        <h2>💊 My Medications</h2>
-        <p>Fill in each medication — schedule and drug info update on save</p>
+      <div class="info-section" id="infoSection">
+        <div class="info-section-head">
+          <h3>Medication Information</h3>
+          <span class="db-badge" id="infoBadge">📋 Drug Database</span>
+        </div>
+        <div class="disclaimer">
+          ⚠ For general reference only. Always consult your pharmacist or prescriber about drug interactions.
+        </div>
+        <div class="info-grid" id="infoGrid"></div>
       </div>
-      <button class="btn-collapse" id="collapseBtn" onclick="togglePanel()">▲ Collapse</button>
-    </div>
-    <div class="setup-body" id="setupBody">
-      <div class="med-form-labels">
-        <span>Medication Name</span>
-        <span>Dose</span>
-        <span>Pills / Amount</span>
-        <span>Frequency</span>
-        <span>Food Note</span>
-        <span></span>
-      </div>
-      <div id="medRows"></div>
-    </div>
-    <div class="setup-footer" id="setupFooter">
-      <button class="btn-add-med"  onclick="addMedRow()">+ Add Another Medication</button>
-      <button class="btn-generate" onclick="generate()">⚡ Save &amp; Generate Schedule</button>
-      <span id="saveConfirmMsg" class="save-confirm-msg">✔ Saved</span>
-    </div>
-  </div>
 
-  <!-- Med Info Section -->
-  <div class="info-section" id="infoSection" style="display:none;">
-    <div class="info-section-head">
-      <h3>Medication Information</h3>
-      <span class="db-badge" id="infoBadge">📋 Firestore Drug Database</span>
     </div>
-    <div class="disclaimer">
-      ⚠ For general reference only. Always consult your pharmacist or prescriber about drug interactions.
-    </div>
-    <div class="info-grid" id="infoGrid"></div>
-  </div>
 
-  <!-- Controls -->
-  <div class="controls" id="mainControls" style="display:none;">
-    <button class="btn btn-reset"      onclick="resetChecks()">⟳ Reset Checks</button>
-    <button class="btn btn-all"        onclick="checkAll()">✓ Mark All Taken</button>
-    <button class="btn btn-prn-toggle" id="prnToggleBtn" onclick="togglePrn()">🚫 Hide As-Needed</button>
-    <button class="btn btn-print"      onclick="print()">🖨 Print</button>
-  </div>
+  </div><!-- /.app-main -->
 
-  <div class="midnight-banner" id="midnightBanner"></div>
-  <div class="prn-banner"      id="prnBanner"></div>
+  <!-- ── BOTTOM TAB BAR (mobile) ── -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="bottom-nav-item active" data-tab="today" onclick="switchTab_app('today')">
+      <span class="bottom-nav-icon">✅</span>
+      <span class="bottom-nav-label">Today</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="medications" onclick="switchTab_app('medications')">
+      <span class="bottom-nav-icon">💊</span>
+      <span class="bottom-nav-label">Medications</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="schedule" onclick="switchTab_app('schedule')">
+      <span class="bottom-nav-icon">📋</span>
+      <span class="bottom-nav-label">Schedule</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="info" onclick="switchTab_app('info')">
+      <span class="bottom-nav-icon">ℹ️</span>
+      <span class="bottom-nav-label">Drug Info</span>
+    </button>
 
-  <!-- Schedule -->
-  <div id="scheduleSection" style="display:none;">
-    <p class="section-title">Dose Checklist</p>
-    <div id="checklist"></div>
-    <p class="section-title">Full Day Schedule</p>
-    <div class="schedule-table" id="scheduleTableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Time</th><th>Medication</th><th>Dose</th><th>Type</th><th>Notes</th>
-          </tr>
-        </thead>
-        <tbody id="scheduleBody"></tbody>
-      </table>
-    </div>
-  </div>
+      <!-- Dark mode toggle -->
+    <button class="bottom-nav-item" id="mobileThemeToggle" onclick="toggleTheme()">
+      <span class="bottom-nav-icon theme-icon-mobile">🌙</span>
+      <span class="bottom-nav-label">Theme</span>
+    </button>
 
-</div>
-</div>
+    <!-- Account — shows demo or user avatar depending on auth state -->
+    <button class="bottom-nav-item" id="mobileAccountBtn"
+      onclick="mobileAccountTap()">
+      <span class="bottom-nav-icon" id="mobileAccountIcon">👤</span>
+      <span class="bottom-nav-label" id="mobileAccountLabel">Sign In</span>
+    </button>
+  </nav>
+
+</div><!-- /#appScreen -->
 
 <script type="module" src="js/app.js"></script>
 </body>

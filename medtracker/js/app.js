@@ -250,18 +250,24 @@ onAuthStateChanged(auth, user => {
   }
 });
 
-// ═══════════════════════════════════════════════════════════════
-// UPDATE HEADER AFTER LOGIN
-// ═══════════════════════════════════════════════════════════════
 function updateHeaderForUser (user) {
   const name     = user.displayName || user.email?.split('@')[0] || 'User';
   const initials = name.slice(0, 2).toUpperCase();
-  document.getElementById('demoChipBtn').style.display  = 'none';
-  document.getElementById('userChip').style.display     = 'flex';
-  document.getElementById('userAvatar').textContent     = initials;
-  document.getElementById('userChipName').textContent   = name;
-  document.getElementById('menuName').textContent       = name;
-  document.getElementById('menuEmail').textContent      = user.email || '';
+
+  // Sidebar
+  document.getElementById('demoChipBtnSidebar').style.display = 'none';
+  document.getElementById('userChipSidebar').style.display    = 'flex';
+  document.getElementById('userAvatarSidebar').textContent    = initials;
+  document.getElementById('userChipNameSidebar').textContent  = name;
+
+  // Mobile bottom nav account button
+  document.getElementById('mobileAccountIcon').textContent  = initials;
+  document.getElementById('mobileAccountLabel').textContent = name.split(' ')[0];
+  document.getElementById('appScreen').classList.add('is-logged-in');
+
+  // Menu details
+  document.getElementById('menuName').textContent  = name;
+  document.getElementById('menuEmail').textContent = user.email || '';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -274,6 +280,8 @@ async function reloadMedsForUser () {
   document.getElementById('medRows').innerHTML = '';
   rowId = 0;
 
+  // Ensure the medications tab is active so rows render correctly
+  switchTab_app('medications');
   // Fetch all med docs from Firestore
   firestoreMeds = await fetchMedsFromFirestore();
 
@@ -297,13 +305,67 @@ async function reloadMedsForUser () {
 // ═════════════════════════════════════════════════════════════
 // USER MENU
 // ═══════════════════════════════════════════════════════════════
-window.toggleUserMenu = function () {
-  document.getElementById('userMenu').classList.toggle('open');
+window.mobileAccountTap = function () {
+  if (isDemo) {
+    openAuthModal('signin');
+  } else {
+    // Show user menu anchored above the mobile account button
+    const menu    = document.getElementById('userMenu');
+    const trigger = document.getElementById('mobileAccountBtn');
+    const isOpen  = menu.classList.contains('open');
+
+    if (isOpen) { menu.classList.remove('open'); return; }
+
+    const rect      = trigger.getBoundingClientRect();
+    const menuHeight = menu.offsetHeight || 160;
+
+    menu.style.bottom = (window.innerHeight - rect.top + 8) + 'px';
+    menu.style.top    = 'auto';
+    menu.style.left   = '100px';
+    menu.style.right  = 'auto';
+
+    menu.classList.add('open');
+  }
 };
+
+window.toggleUserMenu = function () {
+  const menu   = document.getElementById('userMenu');
+  const isOpen = menu.classList.contains('open');
+
+  if (isOpen) {
+    menu.classList.remove('open');
+    return;
+  }
+
+  const trigger     = document.getElementById('userChipSidebar');
+  const sidebarWidth = 220;
+  if (trigger) {
+    const rect       = trigger.getBoundingClientRect();
+    const menuHeight = menu.offsetHeight || 160;
+    const viewportH  = window.innerHeight;
+    const rawTop     = rect.top;
+    const clampedTop = Math.min(rawTop, viewportH - menuHeight - 12);
+
+    menu.style.top    = Math.max(8, clampedTop) + 'px';
+    menu.style.left   = sidebarWidth + 'px';
+    menu.style.right  = 'auto';
+    menu.style.bottom = 'auto';
+  }
+
+  menu.classList.add('open');
+};
+
+// Close when clicking outside both triggers and the menu
 document.addEventListener('click', e => {
-  const chip = document.getElementById('userChip');
-  const menu = document.getElementById('userMenu');
-  if (chip && menu && !chip.contains(e.target) && !menu.contains(e.target)) {
+  const menu          = document.getElementById('userMenu');
+  const sidebarChip   = document.getElementById('userChipSidebar');
+  const mobileBtn     = document.getElementById('mobileAccountBtn');
+  if (
+    menu &&
+    !menu.contains(e.target) &&
+    !sidebarChip?.contains(e.target) &&
+    !mobileBtn?.contains(e.target)
+  ) {
     menu.classList.remove('open');
   }
 });
@@ -342,7 +404,8 @@ window.clearUserData = async function () {
     document.getElementById(id).style.display = 'none';
   });
   document.getElementById('userMenu').classList.remove('open');
-  if (!panelOpen) togglePanel();
+  document.getElementById('appScreen').classList.remove('has-schedule');
+  switchTab_app('medications');
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -871,8 +934,7 @@ window.generate = function (opts = {}) {
   renderInfoCards(meds);
   loadChecks(); // restores today's dose_N checks from each med's Firestore doc
 
-  document.getElementById('scheduleSection').style.display = '';
-  document.getElementById('mainControls').style.display    = 'flex';
+  document.getElementById('appScreen').classList.add('has-schedule');
 
   const last = generatedBlocks.length
     ? generatedBlocks[generatedBlocks.length - 1].offsetMins : 0;
@@ -881,14 +943,8 @@ window.generate = function (opts = {}) {
   document.getElementById('wakeSub').textContent =
     `First dose ${fmtTime(W)} · Last dose window ${fmtTime(W + last)}`;
 
-  if (panelOpen) {
-    panelOpen = false;
-    document.getElementById('setupBody').style.display   = 'none';
-    document.getElementById('setupFooter').style.display = 'none';
-    document.getElementById('collapseBtn').textContent   = '▼ Edit Medications';
-  }
-
   setPrn(prnVisible);
+  switchTab_app('today');
   if (isDemo && !saveBannerDismissed) showSaveBanner();
 };
 
@@ -1051,16 +1107,6 @@ window.checkAll = function () {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// PANEL COLLAPSE
-// ═══════════════════════════════════════════════════════════════
-window.togglePanel = function () {
-  panelOpen = !panelOpen;
-  document.getElementById('setupBody').style.display   = panelOpen ? '' : 'none';
-  document.getElementById('setupFooter').style.display = panelOpen ? '' : 'none';
-  document.getElementById('collapseBtn').textContent   = panelOpen ? '▲ Collapse' : '▼ Edit Medications';
-};
-
-// ═══════════════════════════════════════════════════════════════
 // WAKE TIME CHANGE
 // ═══════════════════════════════════════════════════════════════
 function setupWakeListener () {
@@ -1083,9 +1129,12 @@ function initDemoMeds () {
   const saved = loadMeds();
   if (saved.length) {
     saved.forEach(m => addMedRow(m));
-    setTimeout(generate, 80);
+    // Use silent generate so it doesn't alert, then stay on today tab
+    setTimeout(() => generate({ silent: true }), 80);
   } else {
     addMedRow(); addMedRow(); addMedRow();
+    // No saved meds — start on medications tab so user can fill it in
+    switchTab_app('medications');
   }
 }
 
@@ -1231,8 +1280,12 @@ function friendlyError (code) {
 
 function applyTheme (theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  const icon = document.getElementById('themeToggle')?.querySelector('.theme-icon');
-  if (icon) icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    // Sync all theme icons (sidebar + mobile)
+  document.querySelectorAll('.theme-icon, .theme-icon-mobile').forEach(el => {
+    el.textContent = theme === 'dark' ? '☀️' : '🌙';
+  });
+  const sidebarText = document.getElementById('themeToggle')?.querySelector('.sidebar-label');
+  if (sidebarText) sidebarText.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
   localStorage.setItem('theme', theme);
 }
 
@@ -1242,9 +1295,52 @@ window.toggleTheme = function () {
 };
 
 // ═══════════════════════════════════════════════════════════════
+// APP TAB NAVIGATION
+// Tabs: 'today' | 'medications' | 'schedule' | 'info'
+// ═══════════════════════════════════════════════════════════════
+const TAB_META = {
+  today:        { title: "Today's Schedule",      subtitle: "Track your doses for today" },
+  medications:  { title: "My Medications",        subtitle: "Add and manage your medications" },
+  schedule:     { title: "Full Day Schedule",     subtitle: "Your complete medication timeline" },
+  info:         { title: "Drug Information",      subtitle: "Interactions and medication details" },
+};
+
+window.switchTab_app = function (tabId) {
+  // Update tab panels
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById(`tab-${tabId}`);
+  if (panel) panel.classList.add('active');
+
+  // Update sidebar items
+  document.querySelectorAll('.sidebar-item').forEach(b => {
+    b.classList.toggle('active', b.dataset.tab === tabId);
+  });
+
+  // Update bottom nav items
+  document.querySelectorAll('.bottom-nav-item').forEach(b => {
+    b.classList.toggle('active', b.dataset.tab === tabId);
+  });
+
+  // Update header title/subtitle
+  const meta = TAB_META[tabId];
+  if (meta) {
+    document.getElementById('pageTitle').textContent    = meta.title;
+    document.getElementById('pageSubtitle').textContent = meta.subtitle;
+  }
+
+  // Scroll to top of main content
+  document.querySelector('.app-main')?.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// ═══════════════════════════════════════════════════════════════
 // INIT — runs on page load
 // ═══════════════════════════════════════════════════════════════
 document.getElementById('datePicker').valueAsDate = new Date();
 loadDrugDB();
 initDemoMeds();
 setupWakeListener();
+
+// Start on Medications tab so rows are visible and rendered
+// switchTab_app will move to Today automatically after generate()
+switchTab_app('medications');
+
