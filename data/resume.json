@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "name": "Jose Israel Flores",
+    "title": "iOS Software Engineer",
+    "company": "Toyota Motor North America",
+    "tagline": "Building cloud-connected vehicle features for millions of users across 4 brands and 4 regions.",
+    "location": "Dallas, TX",
+    "phone": "469-803-6800",
+    "email": "fj260996@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/jflores0001",
+    "github": "https://github.com/jossefloress",
+    "website": "https://josedevlabs.com"
+  },
+  "education": [
+    {
+      "school": "The University of Texas at Dallas",
+      "degree": "B.S., Computer Science",
+      "date": "May 2022",
+      "logo": "images/utd_logo.svg",
+      "logoId": "utdimg",
+      "highlights": [
+        "Hispanic Scholarship Fund Scholar",
+        "Society of Hispanic Professional Engineers (SHPE)"
+      ]
+    },
+    {
+      "school": "Collin College",
+      "degree": "A.S., Computer Science",
+      "date": "May 2020",
+      "logo": "images/collin_logo.png",
+      "logoId": "collinimg",
+      "highlights": [
+        "President's List (Fall 2019), Dean's List (Spring 2020)"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Toyota Motor North America",
+      "role": "iOS Software Engineer",
+      "dates": "July 2022 – Present",
+      "location": "Plano, Texas (Hybrid)",
+      "size": "one",
+      "bullets": [
+        "Design, implement, and maintain cloud-connected features for the Toyota/Lexus/Subaru connected vehicle platform across 4 brands and 4 regions, serving millions of monthly active users",
+        "Converted multiple features from Flutter to native Swift (EV Wallet, navigation, POI) as part of a platform-wide modernization effort, improving performance and reducing build complexity",
+        "Built remote vehicle command features using GraphQL subscriptions and real-time telemetry, working with backend teams to ensure reliability across cloud services",
+        "Drove security compliance across the iOS codebase — implementing TLS 1.3 enforcement, migrating API parameters to request bodies, and hardening endpoints against known vulnerability patterns",
+        "Built a local AI-integrated developer tool (MCP server) from scratch that automates account management, cross-platform E2E testing, release notes generation, and API mocking — piloted new technologies (LLMs, Model Context Protocol) and drove adoption across the mobile engineering team",
+        "Implemented \"Data Transmission Off\" privacy controls and feature flag integrations (LaunchDarkly), upholding technical standards for gradual rollouts and operational safety",
+        "Delivered key features for the Australian/New Zealand market launch, collaborating with cross-functional teams (backend, QA, product) to align regional requirements with platform capabilities",
+        "Onboarded 5–6 engineers including knowledge transfer on architecture, tooling, and codebase conventions; participate in first-round technical interviews and promote Agile best practices"
+      ]
+    },
+    {
+      "company": "Children's Health",
+      "role": "iOS Software Engineer",
+      "dates": "January 2022 – May 2022",
+      "location": "Dallas, Texas (Remote)",
+      "subtitle": "UTD Computer Science Senior Project",
+      "size": "two",
+      "bullets": [
+        "Developed a children's learning platform with AR functionality using Swift and Firebase",
+        "Collaborated across two software engineering teams, one hardware team, and one UI/UX designer"
+      ]
+    },
+    {
+      "company": "Wells Fargo",
+      "role": "Software Engineer Intern",
+      "dates": "June 2021 – August 2021",
+      "location": "Irving, Texas (Remote)",
+      "size": "two",
+      "bullets": [
+        "Closed 20+ bugs and vulnerabilities in a .NET system using SonarQube",
+        "Added Regex validation to auto loan input fields to prevent SQL injection attacks",
+        "Served as project manager for 7-person intern team"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Toyota Mobile MCP Server",
+      "tech": "TypeScript / Node.js",
+      "description": "Local AI-integrated developer tool built from scratch, piloting emerging technology (Model Context Protocol + LLMs) to automate mobile team workflows:",
+      "size": "one",
+      "bullets": [
+        "Automated STG/prod account management with credential validation, OTP handling, and password resets",
+        "Cross-platform E2E test automation via Appium with YAML-driven test cases, live debugging, and screen recognition",
+        "Release notes generation from GitHub Actions CI/CD pipelines and Jira aggregation",
+        "API response mocking through Proxyman for isolated cloud-service testing",
+        "PR review status reports and Jira/Confluence workflow integration",
+        "Demoed to engineering leadership; now used by multiple mobile engineers daily"
+      ]
+    },
+    {
+      "name": "Personal Website",
+      "tech": "HTML / CSS / JavaScript",
+      "description": "Responsive portfolio website (josedevlabs.com) showcasing professional experience, projects, and technical skills. Built with a JSON data layer for easy content management, dark mode support, and offline-first architecture via service workers.",
+      "size": "two",
+      "bullets": []
+    },
+    {
+      "name": "MedTracker",
+      "tech": "HTML / CSS / JavaScript",
+      "description": "A medication tracking web app with dark mode support, local storage persistence, and responsive design for managing daily medication schedules.",
+      "size": "two",
+      "bullets": []
+    }
+  ],
+  "skills": {
+    "technical": [
+      "Swift",
+      "TypeScript/Node.js",
+      "Python",
+      "SwiftUI",
+      "Combine",
+      "GraphQL",
+      "XCTest",
+      "Appium",
+      "GitHub Actions",
+      "Xcode",
+      "Proxyman",
+      "LaunchDarkly",
+      "SonarQube",
+      "Firebase",
+      "Git",
+      "CI/CD",
+      "REST/GraphQL APIs",
+      "Agile/Scrum"
+    ],
+    "focusAreas": [
+      "Cloud-native development",
+      "Security hardening",
+      "TLS / endpoint validation",
+      "Developer tooling"
+    ],
+    "languages": [
+      { "language": "English", "level": "Fluent" },
+      { "language": "Spanish", "level": "Fluent" }
+    ]
+  },
+  "contact": {
+    "github": {
+      "label": "GitHub",
+      "url": "https://github.com/jossefloress",
+      "display": "github.com/jossefloress"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/jflores0001",
+      "display": "linkedin.com/in/jflores0001"
+    },
+    "email": {
+      "label": "Email",
+      "url": "mailto:fj260996@gmail.com",
+      "display": "fj260996@gmail.com"
+    },
+    "phone": {
+      "label": "Phone",
+      "url": "tel:469-803-6800",
+      "display": "469-803-6800"
+    }
+  }
+}

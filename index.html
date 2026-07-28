@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Jose Israel Flores">
-  <meta name="description" content="Jose Israel Flores - Software Engineer. Portfolio and resume website showcasing education, experience, and projects.">
-  <meta name="keywords" content="Jose Flores, Software Engineer, Portfolio, Resume, Computer Science, UTD">
+  <meta name="description"
+    content="Jose Israel Flores - iOS Software Engineer at Toyota Motor North America. Building cloud-connected vehicle features serving millions of users across 4 brands and 4 regions.">
+  <meta name="keywords"
+    content="Jose Flores, iOS Software Engineer, Swift, Toyota, Portfolio, Resume, Computer Science, MCP, GraphQL, SwiftUI">
   <link rel="canonical" href="https://josedevlabs.com/">
 
   <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Jose Israel Flores - Software Engineer">
-  <meta property="og:description" content="Portfolio and resume website showcasing education, experience, and projects.">
+  <meta property="og:title" content="Jose Israel Flores - iOS Software Engineer">
+  <meta property="og:description"
+    content="iOS Software Engineer at Toyota Motor North America. Building cloud-connected vehicle features serving millions of users.">
   <meta property="og:image" content="https://josedevlabs.com/images/og_image0.png">
   <meta property="og:url" content="https://josedevlabs.com/">
   <meta property="og:type" content="website">
@@ -19,364 +22,219 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jose Israel Flores - Software Engineer">
-  <meta name="twitter:description" content="Portfolio and resume website showcasing education, experience, and projects.">
+  <meta name="twitter:title" content="Jose Israel Flores - iOS Software Engineer">
+  <meta name="twitter:description"
+    content="iOS Software Engineer at Toyota Motor North America. Building cloud-connected vehicle features serving millions of users.">
   <meta name="twitter:image" content="https://josedevlabs.com/images/og_image0.png">
 
   <meta name="google-site-verification" content="19uv6AiSVErQDs0A615uDokrzeF82DeiVWSPcvZY0VQ">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="./css/styles.css" rel="stylesheet" type="text/css">
-  <!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> -->
-  <!-- <script src="./js/scrollAnimation.js"></script> -->
-  <title>Jose Israel Flores - Software Engineer</title>
+  <title>Jose Israel Flores - iOS Software Engineer</title>
 </head>
 
 <body id="top">
+  <!-- Skip to content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <header>
     <a href="https://josedevlabs.com/">
       <h1>Jose I. Flores</h1>
     </a>
+    <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Switch to dark mode">&#9789;</button>
   </header>
 
-
-  <nav>
+  <nav aria-label="Main navigation">
     <ul>
-      <!-- If you remove the hr tags (which are being
-        used as margin), add 'line' to end of the href
-        for each of the 4 following anchors-->
-
-      <!-- example: href="educationline" -->
-      <a href="#education" class="scrollLink">
-        <li>Education</li>
-      </a>
-
-      <a href="#experience" class="scrollLink">
-        <li>Experience</li>
-      </a>
-
-      <a href="#projects" class="scrollLink">
-        <li>Projects</li>
-      </a>
-
-      <a href="#more" class="scrollLink">
-        <li>More Info</li>
-      </a>
+      <li><a href="#education" class="scrollLink">Education</a></li>
+      <li><a href="#experience" class="scrollLink">Experience</a></li>
+      <li><a href="#projects" class="scrollLink">Projects</a></li>
+      <li><a href="#more" class="scrollLink">More Info</a></li>
     </ul>
   </nav>
 
+  <!-- Hero Section -->
+  <section id="hero" class="hero" aria-label="Introduction">
+    <div class="hero-content">
+      <h2 class="hero-name">Jose Israel Flores</h2>
+      <p class="hero-title">iOS Software Engineer at Toyota Motor North America</p>
+      <p class="hero-tagline">Building cloud-connected vehicle features for millions of users across 4 brands and 4
+        regions.</p>
+      <p class="hero-status"><span class="status-dot"></span> Currently: iOS Software Engineer @ Toyota Motor North
+        America</p>
+    </div>
+  </section>
 
-
-  <main ontouchmove>
-    <hr id="education" href="#experience" style="padding: 0;">
+  <main id="main-content">
+    <hr id="education" style="padding: 0;">
 
     <div class="line" id="resumeline">
-      <a href="./documents/JoseFlores.pdf">
+      <a href="./documents/JoseFlores.pdf" aria-label="View resume PDF">
         <div id="resume-btn">
-          <img src="images/eye-regular.svg" alt="Eye animation">
+          <img src="images/eye-regular.svg" alt="" aria-hidden="true">
           <h3>Resume</h3>
         </div>
       </a>
     </div>
 
-    <div class="line" id="educationline">
+    <!-- Education Section -->
+    <section class="line" id="educationline" aria-label="Education">
       <h2 class="linetitle">Education</h2>
-      <div class="two boxes">
-        <img src="images/utd_logo.svg" alt="The University of Texas at Dallas logo" id="utdimg">
+
+      <div class="two boxes animate-on-scroll">
+        <img src="images/utd_logo.svg" alt="The University of Texas at Dallas logo" id="utdimg" loading="lazy">
         <h3>The University of Texas at Dallas</h3>
         <p><em>May 2022</em></p>
-        <!-- <p><em>GPA: 3.19</em></p> -->
         <br>
-
         <p>B.S., Computer Science</p>
         <p>Hispanic Scholarship Fund Scholar</p>
-        <p>Society Of Hispanic Professional Engineers</p>
+        <p>Society of Hispanic Professional Engineers (SHPE)</p>
       </div>
 
-      <div class="two boxes">
-        <img src="images/collin_logo.png" alt="Collin College logo" id="collinimg">
+      <div class="two boxes animate-on-scroll">
+        <img src="images/collin_logo.png" alt="Collin College logo" id="collinimg" loading="lazy">
         <h3>Collin College</h3>
         <p><em>May 2020</em></p>
-        <!-- <p><em>GPA: 3.40</em></p> -->
         <br>
-
         <p>A.S., Computer Science</p>
-        <p>Dean’s List (Spring 2020), President’s List (Fall 2019)</p>
+        <p>President's List (Fall 2019), Dean's List (Spring 2020)</p>
       </div>
+    </section>
 
-      <h2 class="linetitle">Relevant Courses</h2>
-      <div class="one boxes">
-        <div class="grid-container three-columns" id="courses">
-          <p>Operating System Concepts</p>
-          <p>Software Testing and QA</p>
-          <p>Project Planning and Management</p>
-          <p>Requirements Engineering</p>
-          <p>Object Oriented Design</p>
-        </div>
-      </div>
-
-    </div>
-
+    <!-- Experience Section -->
     <hr id="experience">
-    <div class="line" id="experienceline">
+    <section class="line" id="experienceline" aria-label="Work experience">
       <h2 class="linetitle">Experience</h2>
 
-      <div class="two boxes">
+      <div class="one boxes animate-on-scroll">
+        <h3>Toyota Motor North America</h3>
+        <br>
+        <p><em>iOS Software Engineer</em></p>
+        <p>July 2022 – Present</p>
+        <p>Plano, Texas (Hybrid)</p>
+        <br>
+        <ul>
+          <li>Design, implement, and maintain cloud-connected features for the Toyota/Lexus/Subaru connected vehicle
+            platform across 4 brands and 4 regions, serving millions of monthly active users</li>
+          <li>Converted multiple features from Flutter to native Swift (EV Wallet, navigation, POI) as part of a
+            platform-wide modernization effort, improving performance and reducing build complexity</li>
+          <li>Built remote vehicle command features using GraphQL subscriptions and real-time telemetry, working with
+            backend teams to ensure reliability across cloud services</li>
+          <li>Drove security compliance across the iOS codebase — implementing TLS 1.3 enforcement, migrating API
+            parameters to request bodies, and hardening endpoints against known vulnerability patterns</li>
+          <li>Built a local AI-integrated developer tool (MCP server) from scratch that automates account management,
+            cross-platform E2E testing, release notes generation, and API mocking — piloted new technologies (LLMs,
+            Model Context Protocol) and drove adoption across the mobile engineering team</li>
+          <li>Implemented "Data Transmission Off" privacy controls and feature flag integrations (LaunchDarkly),
+            upholding technical standards for gradual rollouts and operational safety</li>
+          <li>Delivered key features for the Australian/New Zealand market launch, collaborating with cross-functional
+            teams (backend, QA, product) to align regional requirements with platform capabilities</li>
+          <li>Onboarded 5–6 engineers including knowledge transfer on architecture, tooling, and codebase conventions;
+            participate in first-round technical interviews and promote Agile best practices</li>
+        </ul>
+      </div>
+
+      <div class="two boxes animate-on-scroll">
         <h3>Children's Health</h3>
         <br>
-
-        <p><em>Software Engineer</em></p>
-        <p>Janaury 2022 – May 2022</p>
-        <p>Dallas, Texas</p>
+        <p><em>iOS Software Engineer</em></p>
+        <p>January 2022 – May 2022</p>
+        <p>Dallas, Texas (Remote)</p>
         <br>
-
+        <p class="subtitle"><em>UTD Computer Science Senior Project</em></p>
         <ul>
-          <li>
-            UTD Computer Science Senior Project
-          </li>
-
-          <li>
-            Worked with four groups of college students —
-            two groups of software engineers, one group of computer
-            engineers, and one UI/UX designer
-          </li>
-
-          <li>
-            Continued the development of a children's learning platform with AR functionality
-          </li>
-
-          <li>
-            Assisted with backend and frontend changes using Swift, Firebase, and GitHub
-          </li>
+          <li>Developed a children's learning platform with AR functionality using Swift and Firebase</li>
+          <li>Collaborated across two software engineering teams, one hardware team, and one UI/UX designer</li>
         </ul>
-
       </div>
 
-      <div class="two boxes">
+      <div class="two boxes animate-on-scroll">
         <h3>Wells Fargo</h3>
         <br>
-
         <p><em>Software Engineer Intern</em></p>
         <p>June 2021 – August 2021</p>
-        <p>Irving, Texas</p>
+        <p>Irving, Texas (Remote)</p>
         <br>
-
         <ul>
-          <li>
-            Closed 20+ bugs and vulnerabilities of a .NET system using SonarQube
-          </li>
-
-          <li>
-            Added Regex validation to multiple input fields of the auto loan origination process to prevent SQL
-            injection attacks
-          </li>
-
-          <li>
-            Gained knowledge about Jira, agile scrum, and automated testing (UFT, VDIs, smoke tests, and regression
-            testing)
-          </li>
-
-          <li>
-            Actively participated in sprint planning, sprint refinement, and daily stand-up meetings
-          </li>
-
-          <li>
-            Held the position of project manager while working with 6 other interns on our internship project
-          </li>
-
+          <li>Closed 20+ bugs and vulnerabilities in a .NET system using SonarQube</li>
+          <li>Added Regex validation to auto loan input fields to prevent SQL injection attacks</li>
+          <li>Served as project manager for 7-person intern team</li>
         </ul>
       </div>
+    </section>
 
-      <div class="two boxes">
-        <h3>Etech Global Services</h3>
-        <br>
-
-        <p><em>Online Sales Chat Agent</em></p>
-        <p>January 2018 – April 2019</p>
-        <p>Dallas, Texas</p>
-        <br>
-
-
-        <ul>
-          <li>
-            Assisted 2 customers at a time through online chat
-          </li>
-
-          <li>
-            Navigated customer accounts to best resolve customer concerns
-          </li>
-
-          <li>
-            High level of product knowledge and keeping current with product knowledge.
-          </li>
-
-          <li>
-            Exceeded sales quotas on an average of 115% per month
-          </li>
-        </ul>
-      </div>
-
-
-
-      <div class="two boxes">
-        <h3>Chipotle Mexican Grill</h3>
-        <br>
-
-        <p><em>Kitchen Manager</em></p>
-        <p>August 2015 – December 2017</p>
-        <p>Dallas, Texas</p>
-        <br>
-
-        <ul>
-          <li>
-            Performed routine work effectively
-          </li>
-
-          <li>
-            Provided great management and teamwork skills
-          </li>
-
-          <li>
-            Supervised 7-8 people a day
-          </li>
-
-          <li>
-            Implemented cost-control measures to ensure operations were within
-            company targets
-          </li>
-
-          <li>
-            Maximized bottom-line performance through P&L, staff management,
-            loss control and made inventories
-          </li>
-
-          <li>
-            Attended classes (provided by employer) and meetings on how to
-            increase sales and diminish losses
-          </li>
-        </ul>
-
-      </div>
-    </div>
-    </div>
-
-
+    <!-- Projects Section -->
     <hr id="projects">
-    <div class="line" id="projectsline">
-      <h2 class="linetitle">Academic Projects</h2>
-      <div class="four boxes">
-        <h3>Resume Website (HTML/CSS)</h3>
+    <section class="line" id="projectsline" aria-label="Projects">
+      <h2 class="linetitle">Projects</h2>
+
+      <div class="one boxes animate-on-scroll">
+        <h3>Toyota Mobile MCP Server</h3>
+        <p><em>TypeScript / Node.js</em></p>
         <br>
-
-        <p>
-          A responsive website whose main goal is to show all the info that my resume shows
-          but as a website.
-        </p>
-      </div>
-
-      <div class="four boxes">
-        <h3>Parser (C++)</h3>
+        <p>Local AI-integrated developer tool built from scratch, piloting emerging technology (Model Context Protocol +
+          LLMs) to automate mobile team workflows:</p>
         <br>
-
-        <p>
-          Reads the input from a file which has tokens written in a specific syntax.
-          It then prints the type and value
-          of each token found.
-        </p>
+        <ul>
+          <li>Automated STG/prod account management with credential validation, OTP handling, and password resets</li>
+          <li>Cross-platform E2E test automation via Appium with YAML-driven test cases, live debugging, and screen
+            recognition</li>
+          <li>Release notes generation from GitHub Actions CI/CD pipelines and Jira aggregation</li>
+          <li>API response mocking through Proxyman for isolated cloud-service testing</li>
+          <li>PR review status reports and Jira/Confluence workflow integration</li>
+          <li>Demoed to engineering leadership; now used by multiple mobile engineers daily</li>
+        </ul>
       </div>
 
-      <div class="four boxes">
-        <h3>Random Access File (C++)</h3>
+      <div class="two boxes animate-on-scroll">
+        <h3>Personal Website</h3>
+        <p><em>HTML / CSS / JavaScript</em></p>
         <br>
-
-        <p>
-          It first creates a file (if it doesn’t already exist) and then it uses that file
-          as a database. After that, the user needs to use the terminal to access
-          that “database”.
-        </p>
+        <p>Responsive portfolio website (<a href="https://josedevlabs.com" target="_blank"
+            rel="noopener noreferrer">josedevlabs.com</a>) showcasing professional experience, projects, and technical
+          skills. Built with a JSON data layer for easy content management, dark mode support, and offline-first
+          architecture via service workers.</p>
       </div>
 
-      <div class="four boxes">
-        <h3>Math Tree (C++)</h3>
+      <div class="two boxes animate-on-scroll">
+        <h3>MedTracker</h3>
+        <p><em>HTML / CSS / JavaScript</em></p>
         <br>
-
-        <p>
-          From a file it reads in an expression (a series of numbers and operators). Using those values
-          a tree will be built representing the expression. The tree will then be
-          evaluated and deleted.
-        </p>
+        <p>A medication tracking web app with dark mode support, local storage persistence, and responsive design for
+          managing daily medication schedules.</p>
       </div>
+    </section>
 
-    </div>
-
-
-    <hr id="certifications">
-    <div class="line" id="certificationsline">
-      <h2 class="linetitle">Certifications</h2>
-
-      <div class="one boxes" style="margin-bottom: 0; padding-bottom: 15px;  ">
-        <h3>
-          Microsoft Office Specialist (MOS):
-        </h3>
-      </div>
-
-      <div class="four boxes">
-        <p>
-          Microsoft Office Word 2013 Certified
-        </p>
-        <br>
-
-        <p><em>Certiport – May 2017</em></p>
-      </div>
-
-      <div class="four boxes">
-        <p>
-          Microsoft Office Excel 2013 Certified
-        </p>
-        <br>
-
-        <p><em>Certiport – Feb 2017</em></p>
-      </div>
-
-      <div class="four boxes">
-        <p>
-          Microsoft Office PowerPoint 2013 Certified
-        </p>
-        <br>
-
-        <p><em>Certiport – Mar 2017</em></p>
-      </div>
-
-      <div class="four boxes">
-        <p>
-          Microsoft Office Access 2013 Certified
-        </p>
-        <br>
-
-        <p><em>Certiport – Mar 2017</em></p>
-      </div>
-    </div>
-
-
+    <!-- Additional Information Section -->
     <hr id="more">
-    <div class="line" id="moreline">
+    <section class="line" id="moreline" aria-label="Skills and additional information">
       <h2 class="linetitle">Additional Information</h2>
 
-      <div class="two boxes">
-
-        <h3>Technical</h3>
-        <div class="grid-container three-columns">
-          <p>C/C++</p>
-          <p>C#</p>
-          <p>Java</p>
-          <p>HTML/CSS</p>
-          <p>GitHub</p>
-          <p>Unix/Linux</p>
+      <div class="one boxes animate-on-scroll">
+        <h3>Technical Skills</h3>
+        <div class="grid-container three-columns" id="skills">
           <p>Swift</p>
+          <p>TypeScript/Node.js</p>
+          <p>Python</p>
+          <p>SwiftUI</p>
+          <p>Combine</p>
+          <p>GraphQL</p>
+          <p>XCTest</p>
+          <p>Appium</p>
+          <p>GitHub Actions</p>
+          <p>Xcode</p>
+          <p>Proxyman</p>
+          <p>LaunchDarkly</p>
+          <p>SonarQube</p>
           <p>Firebase</p>
+          <p>Git</p>
+          <p>CI/CD</p>
+          <p>REST/GraphQL APIs</p>
+          <p>Agile/Scrum</p>
         </div>
       </div>
 
-      <div class="two boxes">
+      <div class="two boxes animate-on-scroll">
         <h3>Languages</h3>
         <div class="grid-container two-columns">
           <p>English</p>
@@ -386,93 +244,90 @@
         </div>
       </div>
 
+      <div class="two boxes animate-on-scroll">
+        <h3>Focus Areas</h3>
+        <div class="grid-container two-columns">
+          <p>Cloud-native development</p>
+          <p>Security hardening</p>
+          <p>TLS / endpoint validation</p>
+          <p>Developer tooling</p>
+        </div>
+      </div>
+    </section>
 
-
-    </div>
-
-
+    <!-- Contact Section -->
     <hr id="contact">
-    <div class="line" id="contactline">
-
+    <section class="line" id="contactline" aria-label="Contact information">
       <h2 class="linetitle">Contact Info</h2>
 
-      <div class="two boxes">
-        <h3>Github </h3>
+      <div class="two boxes animate-on-scroll">
+        <h3>GitHub</h3>
         <p>
-          <a href="https://www.github.com/jossefloress" target="_blank" rel="noopener noreferrer">
-            www.github.com/jossefloress
+          <a href="https://github.com/jossefloress" target="_blank" rel="noopener noreferrer">
+            github.com/jossefloress
           </a>
         </p>
       </div>
 
-      <div class="two boxes">
-        <h3>LinkedIn </h3>
+      <div class="two boxes animate-on-scroll">
+        <h3>LinkedIn</h3>
         <p>
           <a href="https://www.linkedin.com/in/jflores0001" target="_blank" rel="noopener noreferrer">
-            www.linkedin.com/in/jflores0001
+            linkedin.com/in/jflores0001
           </a>
         </p>
       </div>
 
-      <div class="two boxes">
+      <div class="two boxes animate-on-scroll">
         <h3>Email</h3>
         <p>
-          <a href="mailto:fj260996@gmail.com" target="_blank">
+          <a href="mailto:fj260996@gmail.com">
             fj260996@gmail.com
           </a>
         </p>
       </div>
 
-      <div class="two boxes">
-        <h3>Phone Number</h3>
+      <div class="two boxes animate-on-scroll">
+        <h3>Phone</h3>
         <p>
           <a href="tel:469-803-6800">
             469-803-6800
           </a>
         </p>
       </div>
-
-    </div>
+    </section>
 
     <hr>
-
   </main>
 
-
-  <footer>
+  <footer aria-label="Social links">
     <ul>
-
-      <a href="https://www.github.com/jossefloress" target="_blank" rel="noopener noreferrer">
-        <li>
-          <img src="./images/Github_Icon.svg" alt="Github Icon">
-        </li>
-      </a>
-
-
-      <a href="https://www.linkedin.com/in/jflores0001" target="_blank" rel="noopener noreferrer">
-        <li>
-          <img src="./images/Linkedin_Icon.svg" alt="LinkedIn Icon">
-        </li>
-      </a>
-
-      <a href="mailto:fj260996@gmail.com" target="_blank" rel="noopener noreferrer">
-        <li>
-          <img src="./images/Email_Icon.svg" alt="Email Icon">
-        </li>
-      </a>
-
-
-      <a href="tel:469-803-6800">
-        <li>
-          <img src="./images/Calling_Icon.svg" alt="Phone Icon">
-        </li>
-      </a>
-
-
+      <li>
+        <a href="https://github.com/jossefloress" target="_blank" rel="noopener noreferrer"
+          aria-label="GitHub profile">
+          <img src="./images/Github_Icon.svg" alt="" aria-hidden="true">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/jflores0001" target="_blank" rel="noopener noreferrer"
+          aria-label="LinkedIn profile">
+          <img src="./images/Linkedin_Icon.svg" alt="" aria-hidden="true">
+        </a>
+      </li>
+      <li>
+        <a href="mailto:fj260996@gmail.com" aria-label="Send email">
+          <img src="./images/Email_Icon.svg" alt="" aria-hidden="true">
+        </a>
+      </li>
+      <li>
+        <a href="tel:469-803-6800" aria-label="Call phone number">
+          <img src="./images/Calling_Icon.svg" alt="" aria-hidden="true">
+        </a>
+      </li>
     </ul>
   </footer>
 
-
+  <script src="./js/app.js" defer></script>
 </body>
 
 </html>

@@ -1,94 +1,172 @@
-/* CSS Variables */
+/* ==========================================
+   CSS Variables - Light Theme (default)
+   ========================================== */
 :root {
   --navy-color: #203354;
-  --border-color: lightgray;
+  --navy-light: #2a4470;
+  --border-color: #e0e0e0;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #777777;
+  --accent-color: #203354;
+  --shadow-color: rgba(143, 143, 141, 0.2);
+  --shadow-heavy: rgba(143, 143, 141, 0.5);
+  --hero-bg: linear-gradient(135deg, #203354 0%, #2a4470 50%, #1a2940 100%);
+  --skill-bg: #f0f4f8;
+  --skill-text: #203354;
+  --transition-speed: 0.3s;
 }
 
+/* ==========================================
+   Dark Theme
+   ========================================== */
+[data-theme="dark"] {
+  --navy-color: #4a7ab5;
+  --navy-light: #5a8ac5;
+  --border-color: #3a3a3a;
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #1f2b47;
+  --text-primary: #e8e8e8;
+  --text-secondary: #b8b8b8;
+  --text-muted: #888888;
+  --accent-color: #6ba3d6;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-heavy: rgba(0, 0, 0, 0.5);
+  --hero-bg: linear-gradient(135deg, #0f1b2d 0%, #1a2940 50%, #0a1628 100%);
+  --skill-bg: #2a3a55;
+  --skill-text: #c8d8e8;
+}
+
+/* ==========================================
+   Reset & Base
+   ========================================== */
 * {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Gill Sans', 'Gill Sans MT', Calibri,
-   Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Courier, monospace; */
-  /* default box-sizing is content-box */
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
 }
 
-/** Not supported by most Safari iOS versions This attribute is 
-    replaced by the script in main.js */
-/* html {
-  scroll-behavior: smooth;
-} */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
 
 body::-webkit-scrollbar {
-  width: 12px;             
+  width: 12px;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--navy-color);    
+  background-color: var(--accent-color);
+  border-radius: 6px;
 }
 
+body::-webkit-scrollbar-track {
+  background-color: var(--bg-secondary);
+}
 
-/*
- ========================================== 
-  Global Classes
- ========================================== 
-*/
+/* ==========================================
+   Accessibility
+   ========================================== */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--accent-color);
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  font-size: 0.9em;
+  border-radius: 0 0 8px 0;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ==========================================
+   Grid Utilities
+   ========================================== */
 .grid-container.three-columns {
   display: grid;
-  grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
+  gap: 8px;
 }
 
 .grid-container.two-columns {
   display: grid;
-  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
+  gap: 8px;
 }
 
-
-
-
-/*
- ========================================== 
-  Header
- ========================================== 
-*/
-
+/* ==========================================
+   Header
+   ========================================== */
 header {
-  background-color: var(--navy-color);
+  background-color: var(--accent-color);
   width: 100%;
   text-align: center;
   color: white;
   z-index: 10;
+  position: relative;
 }
 
 header h1 {
-  /* width: auto; */
   font-size: 275%;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
+header a {
+  color: white;
+}
 
-/*
- ========================================== 
-  Nav bar
- ========================================== 
-*/
+/* Dark mode toggle */
+.dark-mode-toggle {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background: none;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  font-size: 1.3em;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, transform 0.3s;
+}
 
+.dark-mode-toggle:hover {
+  border-color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* ==========================================
+   Navigation
+   ========================================== */
 nav {
-  background-color:  var(--navy-color);
-  /* 
-    This means that when the nav bar
-    reaches the top,
-    it'll stick to the top of the page 
-  */
+  background-color: var(--accent-color);
   position: -webkit-sticky;
   position: sticky;
   z-index: 9;
   top: 0;
-  /* offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: 0 1em 0.75em 0 rgba(161, 161, 160, 0.3);
+  box-shadow: 0 1em 0.75em 0 var(--shadow-color);
+  transition: background-color var(--transition-speed);
 }
 
 nav ul {
@@ -103,19 +181,21 @@ a {
   color: inherit;
 }
 
-nav ul a li {
- /* 24.7% *4 = 98.8% + 1% padding = 99.8%  */
+nav ul li {
   width: 24%;
   display: inline-block;
   padding: 1% 1% calc(1% - 5px) 1%;
-  margin: 0 auto; 
+  margin: 0 auto;
   text-align: center;
-  color: white; 
+  color: white;
 }
 
+nav ul li a {
+  color: white;
+  display: block;
+}
 
-
-nav li::after{
+nav li::after {
   display: block;
   content: "";
   height: 5px;
@@ -123,115 +203,185 @@ nav li::after{
   border-radius: 15px;
   background-color: transparent;
   margin: 0 auto;
-  transition: background-color 750ms,
-              width 750ms;
+  transition: background-color 750ms, width 750ms;
 }
 
 nav li:hover::after {
   width: 50%;
-  background-color: whitesmoke ;
+  background-color: whitesmoke;
 }
 
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero {
+  background: var(--hero-bg);
+  padding: 60px 20px 50px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
 
-/*
- ========================================== 
-  Main
- ========================================== 
-*/
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-/* * hr tags are being used as margin 
-* between each .line and the top and bottom
-* of the main tag. */
-/* This was done so that when a list item
-of the navbar is clicked, we have some padding
-at the top of the page */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-name {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.hero-title {
+  font-size: 1.2em;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 16px;
+}
+
+.hero-tagline {
+  font-size: 1em;
+  opacity: 0.75;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ==========================================
+   Main Content
+   ========================================== */
 hr {
   visibility: hidden;
   padding-top: 60px;
 }
 
-
 main {
-  /* Use the commented margin if you 
- remove the an hr tags which are being used
- as margin */
-  /* margin: 30px 0 65px 0; */
+  padding-bottom: 80px; /* Prevents footer overlap */
 }
 
 h3 {
-  color: var(--navy-color);
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 .line {
   display: flex;
   flex-wrap: wrap;
   width: 65%;
-  /* Use the commented margin if you 
- remove the an hr tags which are being used
- as margin */
-  /* margin: 0px auto 40px auto; */
   margin: 0 auto;
   border-radius: 15px;
-  background-color: whitesmoke;
-  color: black;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   text-align: center;
   overflow: auto;
   border: 1px solid var(--border-color);
   padding-bottom: 10px;
-  /* offset-x | offset-y | blur-radius | spread-radius | color
-  box-shadow: -0.25em 0.5em 1em 0 rgba(143, 143, 141, 0.2); */
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
 }
 
 .linetitle {
   width: 100%;
-  color:  var(--navy-color);
+  color: var(--accent-color);
   padding-top: 2%;
   text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-
 .boxes {
-  background-color: white;
+  background-color: var(--bg-card);
   border-radius: 15px;
-  padding: 1% 2% 2% 2%;
+  padding: 1.5% 2.5% 2.5% 2.5%;
   margin: 2%;
   float: left;
-  /* box-shadow: -0.25em 0.5em 1em 0 rgba(143, 143, 141, 0.2); */
+  transition: background-color var(--transition-speed), transform 0.2s, box-shadow 0.2s;
+}
+
+.boxes:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.boxes ul {
+  list-style: disc;
+  padding-left: 20px;
 }
 
 .boxes ul li {
-  margin: 8px 20px;
-  text-indent: -5px;
+  margin: 8px 0;
   text-align: left;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
-.one
-{
-  /* 96% because I'm using box-sizing: border-box; */
-  /* 96% width + 2% margin + 2% padding = 100% */
-  width: 96%; 
+.boxes p {
+  color: var(--text-secondary);
 }
 
-/* Use this class when you want two boxes in one line. */
+.boxes p.subtitle {
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.one {
+  width: 96%;
+}
+
 .two {
-  /* 46% because I'm using box-sizing: border-box; */
-  /* 46% width + 2% margin + 2% padding = 50% (* 2) =100% */
   width: 46%;
 }
 
-.three
-{
-  /* 29.33% because I'm using box-sizing: border-box; */
-  /* 29.33% width + 2% margin + 2% padding = 33.33% (* 3) = 99.99% */
+.three {
   width: 29.33%;
 }
 
 .four {
-  /* 21% because I'm using box-sizing: border-box; */
-  /* 21% width + 2% margin + 2% padding = 25% (* 4) = 100% */
   width: 21%;
 }
 
+/* ==========================================
+   Resume Button
+   ========================================== */
 #resumeline {
   border-radius: 0;
   border: none;
@@ -246,11 +396,12 @@ h3 {
   justify-content: center;
   position: relative;
   border-radius: 15px;
-  background-color: var(--navy-color);
+  background-color: var(--accent-color);
   width: 120px;
   height: 35px;
-  box-shadow: -0.25em 0.5em 1em 0 rgba(143, 143, 141, 0.2);
+  box-shadow: -0.25em 0.5em 1em 0 var(--shadow-color);
   margin: 10px 15px 15px 15px;
+  transition: background-color var(--transition-speed);
 }
 
 #resume-btn::before {
@@ -262,8 +413,8 @@ h3 {
   width: 0%;
   height: inherit;
   border-radius: 15px;
-  background-color: whitesmoke;
-  border: 1px solid var(--border-color);  
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   transition: width 450ms, visibility 350ms;
 }
 
@@ -272,7 +423,7 @@ h3 {
   visibility: visible;
 }
 
-#resume-btn > img {
+#resume-btn>img {
   margin: 5px 3px;
   width: 20%;
   filter: invert();
@@ -280,28 +431,31 @@ h3 {
   z-index: 2;
 }
 
-#resume-btn > h3 {
+#resume-btn>h3 {
   margin: 5px 3px;
   color: white;
 }
 
-#resume-btn:hover > img {
+#resume-btn:hover>img {
   filter: none;
   margin-left: 75%;
 }
 
-#resume-btn:hover > h3 {
+#resume-btn:hover>h3 {
   visibility: hidden;
 }
 
-
-#education {
-  /* padding-top: 23px; */
+[data-theme="dark"] #resume-btn>img {
+  filter: invert(0.8);
 }
 
-#educationline {
+[data-theme="dark"] #resume-btn:hover>img {
+  filter: invert(0.2);
 }
 
+/* ==========================================
+   Education Logos
+   ========================================== */
 #utdimg {
   width: 50%;
 }
@@ -310,39 +464,89 @@ h3 {
   width: 35%;
 }
 
-#experienceline {
-
+/* ==========================================
+   Projects Section
+   ========================================== */
+#projectsline .boxes p {
+  text-align: left;
 }
 
-#projectsline .boxes p{
-  text-align: left;  
+/* ==========================================
+   Skills Section
+   ========================================== */
+#skills {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
 }
 
-#certificationsline {
-
+#skills p {
+  padding: 6px 12px;
+  text-align: center;
+  background-color: var(--skill-bg);
+  color: var(--skill-text);
+  border-radius: 8px;
+  font-size: 0.88em;
+  font-weight: 500;
+  transition: background-color var(--transition-speed), color var(--transition-speed), transform 0.2s;
 }
 
-#moreline {
-
+#skills p:hover {
+  transform: scale(1.05);
 }
 
+/* ==========================================
+   Contact Section
+   ========================================== */
 #contactline {
-  background-color:  var(--navy-color);
+  background-color: var(--accent-color);
 }
 
 #contactline h2 {
   color: white;
 }
 
+#contactline .boxes {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
 
-/*
- ========================================== 
-  Footer
- ========================================== 
-*/
+#contactline .boxes:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
 
-footer
-{
+#contactline .boxes h3 {
+  color: white;
+}
+
+#contactline .boxes p,
+#contactline .boxes a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#contactline .boxes a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* ==========================================
+   Scroll Animations
+   ========================================== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+footer {
   position: fixed;
   bottom: 1%;
   width: 100%;
@@ -352,80 +556,80 @@ footer
 }
 
 footer ul {
+  list-style: none;
   margin: 0 auto;
 }
 
 footer li {
   display: inline-block;
-  background:  var(--navy-color);
+  background: var(--accent-color);
   width: 6%;
   border-radius: 50px;
   border: 0.5px solid var(--border-color);
   margin: 0 1%;
-  /* offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: -0.125em 0.25em 1em 0 rgba(143, 143, 141, .5);
+  box-shadow: -0.125em 0.25em 1em 0 var(--shadow-heavy);
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-footer li:hover{
-  background-color: whitesmoke;
-  color:  var(--navy-color);
+footer li:hover {
+  background-color: var(--bg-secondary);
+  transform: translateY(-3px);
 }
 
-footer li:hover > img {
+footer li:hover img {
   filter: none;
+}
+
+footer li a {
+  display: block;
+  padding: 10% 0;
 }
 
 footer li img {
   width: 50%;
   max-width: 25px;
-  margin-top: 3%;
   filter: invert();
+  vertical-align: middle;
+  transition: filter 0.3s;
 }
 
+[data-theme="dark"] footer li img {
+  filter: invert(0.85);
+}
 
+[data-theme="dark"] footer li:hover img {
+  filter: invert(0.2);
+}
 
-
-/*
- ========================================== 
-  Media Queries
- ========================================== 
-*/
-
-@media only screen and (max-width:1200px){
+/* ==========================================
+   Media Queries
+   ========================================== */
+@media only screen and (max-width: 1200px) {
   .line {
     width: 80%;
   }
-
 }
 
-/* The changes done to the large responsive layout 
-become the default for smaller layouts.
-But those changes can be overwritten to make further 
-changes to any selector you want */
-
-/* Responsive layout - when the screen is less
-than 900px wide, make the columns stack on
-top of each other instead of next to each other */
-@media only screen and (max-width:900px){
+@media only screen and (max-width: 900px) {
   nav ul {
     width: 100%;
   }
 
-  nav ul a li {
+  nav ul li {
     font-size: 1em;
     padding: 2% 0.5%;
   }
 
   .line {
     width: 85%;
-    overflow: auto;    
+    overflow: auto;
   }
 
-  #utd {
+  #utdimg {
     width: 40%;
   }
 
-  #collin {
+  #collinimg {
     width: 25%;
   }
 
@@ -433,27 +637,35 @@ top of each other instead of next to each other */
   .two,
   .three,
   .four {
-    /* 96% because I'm using box-sizing: border-box; */
-    /* 96% width + 2% margin + 2% padding = 100% */
     width: 96%;
   }
 
-  footer ul li {
+  footer li {
     width: 12%;
   }
 
+  #skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-name {
+    font-size: 2em;
+  }
+
+  .hero-title {
+    font-size: 1.1em;
+  }
+
+  .dark-mode-toggle {
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 1.1em;
+  }
 }
 
-
-
-/* Responsive layout - when the screen is less than 700px wide */
-@media only screen and (max-width:700px){
-
-  /* Here, the changes that me made to nav ul a li 
-    in the larger layout (max-width: 1000px) are being
-    overwritten.*/
-
-  nav ul a li {
+@media only screen and (max-width: 700px) {
+  nav ul li {
     font-size: 0.9em;
     padding: 5% 0.5%;
   }
@@ -462,37 +674,149 @@ top of each other instead of next to each other */
     width: 92%;
   }
 
-  .three-columns#courses {
-    display: block;
+  .grid-container.three-columns {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-
-  /* Since the larger layout made changes to nav ul, .one,
-    .two, .three, .four, #utd, and #collin, the changes
-    made there will be the default for the smaller layouts. */
-
-  footer ul a li {
+  footer li {
     width: 16%;
   }
 
-}
-
-
-
-/* Responsive layout - when the screen is less than 330px */
-  @media only screen and (max-width:330px){
-     header h1{
-      font-size: 225%;
-    }
-  
-    nav ul a li {
-      font-size: 0.8em;
-      width: 23%;
-    }
-
-    footer ul a li {
-      width: 20%;
-    }
+  footer {
+    position: static;
+    padding: 20px 0;
   }
 
-  
+  main {
+    padding-bottom: 20px;
+  }
+
+  .hero {
+    padding: 40px 16px 35px;
+  }
+
+  .hero-name {
+    font-size: 1.7em;
+  }
+
+  .hero-status {
+    font-size: 0.78em;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  header h1 {
+    font-size: 225%;
+  }
+
+  nav ul li {
+    font-size: 0.8em;
+    width: 23%;
+  }
+
+  footer li {
+    width: 20%;
+  }
+
+  #skills {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-container.three-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-name {
+    font-size: 1.4em;
+  }
+}
+
+/* ==========================================
+   Print Styles
+   ========================================== */
+@media print {
+  /* Reset colors for print */
+  :root {
+    --navy-color: #000000;
+    --border-color: #cccccc;
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --accent-color: #000000;
+  }
+
+  /* Hide non-essential elements */
+  .hero,
+  footer,
+  nav,
+  .dark-mode-toggle,
+  #resumeline,
+  .skip-link,
+  #contactline {
+    display: none !important;
+  }
+
+  /* Reset layout for print */
+  body {
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  .line {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    page-break-inside: avoid;
+    background: none;
+    padding: 0;
+  }
+
+  .boxes {
+    border: none;
+    border-radius: 0;
+    padding: 8px 0;
+    margin: 4px 0;
+    box-shadow: none;
+    float: none;
+    width: 100% !important;
+  }
+
+  .boxes:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .linetitle {
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    color: #000;
+  }
+
+  hr {
+    display: none;
+  }
+
+  /* Disable animations */
+  .animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Show URLs after links */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+
+  a[href^="mailto"]::after,
+  a[href^="tel"]::after {
+    content: none;
+  }
+}
