@@ -33,16 +33,17 @@
   // ─── Section Renderers ─────────────────────────────────────────────
 
   function renderHero(data) {
-    const hero = document.getElementById('hero');
-    if (!hero || !data.meta) return;
+    if (!data.meta) return;
 
-    hero.querySelector('.hero-title').textContent = `${data.meta.title} at ${data.meta.company}`;
-    hero.querySelector('.hero-tagline').textContent = data.meta.tagline;
+    // Update header subtitle and status
+    const subtitle = document.querySelector('.header-subtitle');
+    const status = document.querySelector('.header-status');
 
-    // Status indicator
-    const status = hero.querySelector('.hero-status');
+    if (subtitle) {
+      subtitle.textContent = `${data.meta.title} at ${data.meta.company}`;
+    }
     if (status) {
-      status.innerHTML = `<span class="status-dot"></span> Currently: ${data.meta.title} @ ${data.meta.company}`;
+      status.innerHTML = `<span class="status-dot"></span> ${data.meta.tagline}`;
     }
   }
 
@@ -177,9 +178,20 @@
     const focusBox = createElement('div', { className: 'one boxes animate-on-scroll', id: 'focus-areas-box' });
     focusBox.appendChild(createElement('h3', { textContent: 'Focus Areas' }));
     const focusGrid = createElement('div', { className: 'focus-areas-grid' });
+
+    const focusIcons = {
+      ai: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.92L12 22"/><path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.57 3.25 3.92"/><path d="M9 10h6"/><path d="M9 14h6"/><path d="M9 18h6"/></svg>',
+      mobile: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>',
+      security: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+      devex: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="2" x2="12" y2="22"/></svg>'
+    };
+
     data.skills.focusAreas.forEach(area => {
       const card = createElement('div', { className: 'focus-card' });
-      card.appendChild(createElement('span', { className: 'focus-icon', textContent: area.icon }));
+      const iconSpan = createElement('span', { className: 'focus-icon' });
+      iconSpan.setAttribute('aria-hidden', 'true');
+      iconSpan.innerHTML = focusIcons[area.icon] || '';
+      card.appendChild(iconSpan);
       card.appendChild(createElement('h4', { textContent: area.title }));
       card.appendChild(createElement('p', { textContent: area.description }));
       focusGrid.appendChild(card);

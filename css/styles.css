@@ -129,12 +129,13 @@ body::-webkit-scrollbar-track {
    Header
    ========================================== */
 header {
-  background-color: var(--accent-color);
+  background: var(--hero-bg);
   width: 100%;
   text-align: center;
   color: white;
   z-index: 10;
   position: relative;
+  padding: 20px 60px;
 }
 
 header h1 {
@@ -145,6 +146,36 @@ header h1 {
 
 header a {
   color: white;
+}
+
+.header-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1em;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.header-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85em;
+  margin-top: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #4ade80;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 /* Dark mode toggle */
@@ -227,82 +258,6 @@ nav li::after {
 nav li:hover::after {
   width: 50%;
   background-color: whitesmoke;
-}
-
-/* ==========================================
-   Hero Section
-   ========================================== */
-.hero {
-  background: var(--hero-bg);
-  padding: 45px 20px 40px;
-  text-align: center;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(ellipse at 30% 50%, rgba(59, 89, 152, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 50%, rgba(107, 163, 214, 0.1) 0%, transparent 50%);
-  animation: heroShift 15s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes heroShift {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(2%, -2%); }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.hero-title {
-  font-size: 1.3em;
-  font-weight: 500;
-  opacity: 0.95;
-  margin-bottom: 12px;
-}
-
-.hero-tagline {
-  font-size: 1em;
-  opacity: 0.75;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.hero-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 6px 16px;
-  font-size: 0.85em;
-  opacity: 0.9;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #4ade80;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
 }
 
 /* ==========================================
@@ -567,12 +522,17 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   background-color: var(--focus-icon-bg);
   border-radius: 10px;
-  font-size: 1.3em;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  color: var(--accent-color);
+}
+
+.focus-icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .focus-card h4 {
@@ -763,14 +723,9 @@ footer li img {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hero-title {
-    font-size: 1.1em;
-  }
-
   .focus-areas-grid {
     grid-template-columns: 1fr;
   }
-
   .dark-mode-toggle {
     right: 10px;
     width: 35px;
@@ -804,14 +759,6 @@ footer li img {
 
   main {
     padding-bottom: 20px;
-  }
-
-  .hero {
-    padding: 30px 16px 25px;
-  }
-
-  .hero-status {
-    font-size: 0.78em;
   }
 }
 
@@ -855,7 +802,6 @@ footer li img {
   }
 
   /* Hide non-essential elements */
-  .hero,
   footer,
   nav,
   .dark-mode-toggle,
