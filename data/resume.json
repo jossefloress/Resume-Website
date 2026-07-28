@@ -129,10 +129,26 @@
       "Agile/Scrum"
     ],
     "focusAreas": [
-      "Cloud-native development",
-      "Security hardening",
-      "TLS / endpoint validation",
-      "Developer tooling"
+      {
+        "icon": "\u2601",
+        "title": "Cloud-Native Development",
+        "description": "Building scalable, distributed features for connected vehicle platforms across multiple regions"
+      },
+      {
+        "icon": "\uD83D\uDD12",
+        "title": "Security Hardening",
+        "description": "TLS 1.3 enforcement, endpoint validation, and vulnerability remediation across iOS codebases"
+      },
+      {
+        "icon": "\u2699",
+        "title": "Developer Tooling",
+        "description": "AI-integrated automation tools (MCP servers) that streamline team workflows and testing pipelines"
+      },
+      {
+        "icon": "\uD83D\uDE80",
+        "title": "Platform Modernization",
+        "description": "Migrating cross-platform features to native Swift, improving performance and reducing build complexity"
+      }
     ],
     "languages": [
       { "language": "English", "level": "Fluent" },

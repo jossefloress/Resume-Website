@@ -174,11 +174,15 @@
     container.appendChild(langBox);
 
     // Focus Areas
-    const focusBox = createElement('div', { className: 'two boxes animate-on-scroll' });
+    const focusBox = createElement('div', { className: 'one boxes animate-on-scroll', id: 'focus-areas-box' });
     focusBox.appendChild(createElement('h3', { textContent: 'Focus Areas' }));
-    const focusGrid = createElement('div', { className: 'grid-container two-columns' });
+    const focusGrid = createElement('div', { className: 'focus-areas-grid' });
     data.skills.focusAreas.forEach(area => {
-      focusGrid.appendChild(createElement('p', { textContent: area }));
+      const card = createElement('div', { className: 'focus-card' });
+      card.appendChild(createElement('span', { className: 'focus-icon', textContent: area.icon }));
+      card.appendChild(createElement('h4', { textContent: area.title }));
+      card.appendChild(createElement('p', { textContent: area.description }));
+      focusGrid.appendChild(card);
     });
     focusBox.appendChild(focusGrid);
     container.appendChild(focusBox);
