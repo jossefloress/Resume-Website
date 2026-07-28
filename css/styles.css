@@ -216,7 +216,7 @@ nav li:hover::after {
    ========================================== */
 .hero {
   background: var(--hero-bg);
-  padding: 60px 20px 50px;
+  padding: 40px 20px 35px;
   text-align: center;
   color: white;
   position: relative;
@@ -241,18 +241,11 @@ nav li:hover::after {
   margin: 0 auto;
 }
 
-.hero-name {
-  font-size: 2.5em;
-  font-weight: 700;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
-}
-
 .hero-title {
-  font-size: 1.2em;
-  font-weight: 400;
-  opacity: 0.9;
-  margin-bottom: 16px;
+  font-size: 1.3em;
+  font-weight: 500;
+  opacity: 0.95;
+  margin-bottom: 12px;
 }
 
 .hero-tagline {
@@ -543,6 +536,18 @@ h3 {
   transform: translateY(0);
 }
 
+/* Fallback: if JS hasn't run after 3s, show all elements */
+@keyframes showFallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  animation: showFallback 0s 3s forwards;
+}
+
 /* ==========================================
    Footer
    ========================================== */
@@ -648,10 +653,6 @@ footer li img {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hero-name {
-    font-size: 2em;
-  }
-
   .hero-title {
     font-size: 1.1em;
   }
@@ -692,11 +693,7 @@ footer li img {
   }
 
   .hero {
-    padding: 40px 16px 35px;
-  }
-
-  .hero-name {
-    font-size: 1.7em;
+    padding: 30px 16px 25px;
   }
 
   .hero-status {
@@ -724,10 +721,6 @@ footer li img {
 
   .grid-container.three-columns {
     grid-template-columns: 1fr;
-  }
-
-  .hero-name {
-    font-size: 1.4em;
   }
 }
 

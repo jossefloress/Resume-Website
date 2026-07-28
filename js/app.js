@@ -36,7 +36,6 @@
     const hero = document.getElementById('hero');
     if (!hero || !data.meta) return;
 
-    hero.querySelector('.hero-name').textContent = data.meta.name;
     hero.querySelector('.hero-title').textContent = `${data.meta.title} at ${data.meta.company}`;
     hero.querySelector('.hero-tagline').textContent = data.meta.tagline;
 
@@ -296,6 +295,12 @@
     const elements = document.querySelectorAll('.animate-on-scroll');
     if (!elements.length) return;
 
+    // If IntersectionObserver is not supported, show everything immediately
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach(el => el.classList.add('animated'));
+      return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -304,11 +309,19 @@
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px 0px 0px'
     });
 
-    elements.forEach(el => observer.observe(el));
+    elements.forEach(el => {
+      // If element is already in viewport, animate immediately
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('animated');
+      } else {
+        observer.observe(el);
+      }
+    });
   }
 
   // ─── Service Worker Registration ──────────────────────────────────
@@ -345,8 +358,11 @@
       renderJsonLd(data);
 
       // Initialize scroll animations after content is rendered
+      // Double rAF ensures the browser has laid out + painted the new elements
       requestAnimationFrame(() => {
-        initScrollAnimations();
+        requestAnimationFrame(() => {
+          initScrollAnimations();
+        });
       });
 
     } catch (error) {

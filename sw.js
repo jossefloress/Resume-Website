@@ -3,7 +3,7 @@
  * Provides offline support and caching for faster repeat visits.
  */
 
-const CACHE_NAME = 'josedevlabs-v1';
+const CACHE_NAME = 'josedevlabs-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
