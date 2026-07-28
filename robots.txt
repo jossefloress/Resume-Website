@@ -1,0 +1,5 @@
+# robots.txt for josedevlabs.com
+User-agent: *
+Allow: /
+
+Sitemap: https://josedevlabs.com/sitemap.xml

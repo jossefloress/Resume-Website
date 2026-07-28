@@ -1,0 +1,7 @@
+# Security Policy for josedevlabs.com
+# https://securitytxt.org/
+
+Contact: mailto:fj260996@gmail.com
+Preferred-Languages: en, es
+Canonical: https://josedevlabs.com/security.txt
+Expires: 2027-07-28T00:00:00.000Z
