@@ -6,54 +6,46 @@
 
 * {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Gill Sans', 'Gill Sans MT', Calibri,
-   Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Courier, monospace; */
-  /* default box-sizing is content-box */
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
 }
 
-/** Not supported by most Safari iOS versions This attribute is 
-    replaced by the script in main.js */
-/* html {
-  scroll-behavior: smooth;
-} */
-
 body::-webkit-scrollbar {
-  width: 12px;             
+  width: 12px;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--navy-color);    
+  background-color: var(--navy-color);
 }
 
 
 /*
- ========================================== 
+ ==========================================
   Global Classes
- ========================================== 
+ ==========================================
 */
 .grid-container.three-columns {
   display: grid;
-  grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
+  gap: 4px 0;
 }
 
 .grid-container.two-columns {
   display: grid;
-  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
+  gap: 4px 0;
 }
 
 
-
-
 /*
- ========================================== 
+ ==========================================
   Header
- ========================================== 
+ ==========================================
 */
 
 header {
@@ -65,29 +57,22 @@ header {
 }
 
 header h1 {
-  /* width: auto; */
   font-size: 275%;
 }
 
 
 /*
- ========================================== 
+ ==========================================
   Nav bar
- ========================================== 
+ ==========================================
 */
 
 nav {
-  background-color:  var(--navy-color);
-  /* 
-    This means that when the nav bar
-    reaches the top,
-    it'll stick to the top of the page 
-  */
+  background-color: var(--navy-color);
   position: -webkit-sticky;
   position: sticky;
   z-index: 9;
   top: 0;
-  /* offset-x | offset-y | blur-radius | spread-radius | color */
   box-shadow: 0 1em 0.75em 0 rgba(161, 161, 160, 0.3);
 }
 
@@ -103,19 +88,21 @@ a {
   color: inherit;
 }
 
-nav ul a li {
- /* 24.7% *4 = 98.8% + 1% padding = 99.8%  */
+nav ul li {
   width: 24%;
   display: inline-block;
   padding: 1% 1% calc(1% - 5px) 1%;
-  margin: 0 auto; 
+  margin: 0 auto;
   text-align: center;
-  color: white; 
+  color: white;
 }
 
+nav ul li a {
+  color: white;
+  display: block;
+}
 
-
-nav li::after{
+nav li::after {
   display: block;
   content: "";
   height: 5px;
@@ -124,38 +111,24 @@ nav li::after{
   background-color: transparent;
   margin: 0 auto;
   transition: background-color 750ms,
-              width 750ms;
+    width 750ms;
 }
 
 nav li:hover::after {
   width: 50%;
-  background-color: whitesmoke ;
+  background-color: whitesmoke;
 }
 
 
 /*
- ========================================== 
+ ==========================================
   Main
- ========================================== 
+ ==========================================
 */
 
-/* * hr tags are being used as margin 
-* between each .line and the top and bottom
-* of the main tag. */
-/* This was done so that when a list item
-of the navbar is clicked, we have some padding
-at the top of the page */
 hr {
   visibility: hidden;
   padding-top: 60px;
-}
-
-
-main {
-  /* Use the commented margin if you 
- remove the an hr tags which are being used
- as margin */
-  /* margin: 30px 0 65px 0; */
 }
 
 h3 {
@@ -166,10 +139,6 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   width: 65%;
-  /* Use the commented margin if you 
- remove the an hr tags which are being used
- as margin */
-  /* margin: 0px auto 40px auto; */
   margin: 0 auto;
   border-radius: 15px;
   background-color: whitesmoke;
@@ -178,17 +147,14 @@ h3 {
   overflow: auto;
   border: 1px solid var(--border-color);
   padding-bottom: 10px;
-  /* offset-x | offset-y | blur-radius | spread-radius | color
-  box-shadow: -0.25em 0.5em 1em 0 rgba(143, 143, 141, 0.2); */
 }
 
 .linetitle {
   width: 100%;
-  color:  var(--navy-color);
+  color: var(--navy-color);
   padding-top: 2%;
   text-transform: uppercase;
 }
-
 
 .boxes {
   background-color: white;
@@ -196,39 +162,36 @@ h3 {
   padding: 1% 2% 2% 2%;
   margin: 2%;
   float: left;
-  /* box-shadow: -0.25em 0.5em 1em 0 rgba(143, 143, 141, 0.2); */
+}
+
+.boxes ul {
+  list-style: disc;
+  padding-left: 20px;
 }
 
 .boxes ul li {
-  margin: 8px 20px;
-  text-indent: -5px;
+  margin: 8px 0;
   text-align: left;
 }
 
-.one
-{
-  /* 96% because I'm using box-sizing: border-box; */
-  /* 96% width + 2% margin + 2% padding = 100% */
-  width: 96%; 
+.boxes p.subtitle {
+  text-align: left;
+  margin-bottom: 8px;
 }
 
-/* Use this class when you want two boxes in one line. */
+.one {
+  width: 96%;
+}
+
 .two {
-  /* 46% because I'm using box-sizing: border-box; */
-  /* 46% width + 2% margin + 2% padding = 50% (* 2) =100% */
   width: 46%;
 }
 
-.three
-{
-  /* 29.33% because I'm using box-sizing: border-box; */
-  /* 29.33% width + 2% margin + 2% padding = 33.33% (* 3) = 99.99% */
+.three {
   width: 29.33%;
 }
 
 .four {
-  /* 21% because I'm using box-sizing: border-box; */
-  /* 21% width + 2% margin + 2% padding = 25% (* 4) = 100% */
   width: 21%;
 }
 
@@ -263,7 +226,7 @@ h3 {
   height: inherit;
   border-radius: 15px;
   background-color: whitesmoke;
-  border: 1px solid var(--border-color);  
+  border: 1px solid var(--border-color);
   transition: width 450ms, visibility 350ms;
 }
 
@@ -272,7 +235,7 @@ h3 {
   visibility: visible;
 }
 
-#resume-btn > img {
+#resume-btn>img {
   margin: 5px 3px;
   width: 20%;
   filter: invert();
@@ -280,26 +243,18 @@ h3 {
   z-index: 2;
 }
 
-#resume-btn > h3 {
+#resume-btn>h3 {
   margin: 5px 3px;
   color: white;
 }
 
-#resume-btn:hover > img {
+#resume-btn:hover>img {
   filter: none;
   margin-left: 75%;
 }
 
-#resume-btn:hover > h3 {
+#resume-btn:hover>h3 {
   visibility: hidden;
-}
-
-
-#education {
-  /* padding-top: 23px; */
-}
-
-#educationline {
 }
 
 #utdimg {
@@ -310,39 +265,58 @@ h3 {
   width: 35%;
 }
 
-#experienceline {
-
-}
-
-#projectsline .boxes p{
-  text-align: left;  
-}
-
-#certificationsline {
-
-}
-
-#moreline {
-
+#projectsline .boxes p {
+  text-align: left;
 }
 
 #contactline {
-  background-color:  var(--navy-color);
+  background-color: var(--navy-color);
 }
 
 #contactline h2 {
   color: white;
 }
 
+#contactline .boxes {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#contactline .boxes h3 {
+  color: white;
+}
+
+#contactline .boxes p,
+#contactline .boxes a {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#contactline .boxes a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Skills grid adjustments */
+#skills {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 16px;
+}
+
+#skills p {
+  padding: 4px 8px;
+  text-align: center;
+  background-color: whitesmoke;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
 
 /*
- ========================================== 
+ ==========================================
   Footer
- ========================================== 
+ ==========================================
 */
 
-footer
-{
+footer {
   position: fixed;
   bottom: 1%;
   width: 100%;
@@ -352,80 +326,74 @@ footer
 }
 
 footer ul {
+  list-style: none;
   margin: 0 auto;
 }
 
 footer li {
   display: inline-block;
-  background:  var(--navy-color);
+  background: var(--navy-color);
   width: 6%;
   border-radius: 50px;
   border: 0.5px solid var(--border-color);
   margin: 0 1%;
-  /* offset-x | offset-y | blur-radius | spread-radius | color */
   box-shadow: -0.125em 0.25em 1em 0 rgba(143, 143, 141, .5);
 }
 
-footer li:hover{
+footer li:hover {
   background-color: whitesmoke;
-  color:  var(--navy-color);
+  color: var(--navy-color);
 }
 
-footer li:hover > img {
+footer li:hover img {
   filter: none;
+}
+
+footer li a {
+  display: block;
+  padding: 10% 0;
 }
 
 footer li img {
   width: 50%;
   max-width: 25px;
-  margin-top: 3%;
   filter: invert();
+  vertical-align: middle;
 }
-
-
 
 
 /*
- ========================================== 
+ ==========================================
   Media Queries
- ========================================== 
+ ==========================================
 */
 
-@media only screen and (max-width:1200px){
+@media only screen and (max-width:1200px) {
   .line {
     width: 80%;
   }
-
 }
 
-/* The changes done to the large responsive layout 
-become the default for smaller layouts.
-But those changes can be overwritten to make further 
-changes to any selector you want */
-
-/* Responsive layout - when the screen is less
-than 900px wide, make the columns stack on
-top of each other instead of next to each other */
-@media only screen and (max-width:900px){
+@media only screen and (max-width:900px) {
   nav ul {
     width: 100%;
   }
 
-  nav ul a li {
+  nav ul li {
     font-size: 1em;
     padding: 2% 0.5%;
   }
 
   .line {
     width: 85%;
-    overflow: auto;    
+    overflow: auto;
   }
 
-  #utd {
+  #utdimg {
     width: 40%;
   }
 
-  #collin {
+  #collinimg {
     width: 25%;
   }
 
@@ -433,27 +401,20 @@ top of each other instead of next to each other */
   .two,
   .three,
   .four {
-    /* 96% because I'm using box-sizing: border-box; */
-    /* 96% width + 2% margin + 2% padding = 100% */
     width: 96%;
   }
 
-  footer ul li {
+  footer li {
     width: 12%;
   }
 
+  #skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-
-
-/* Responsive layout - when the screen is less than 700px wide */
-@media only screen and (max-width:700px){
-
-  /* Here, the changes that me made to nav ul a li 
-    in the larger layout (max-width: 1000px) are being
-    overwritten.*/
-
-  nav ul a li {
+@media only screen and (max-width:700px) {
+  nav ul li {
     font-size: 0.9em;
     padding: 5% 0.5%;
   }
@@ -462,37 +423,34 @@ top of each other instead of next to each other */
     width: 92%;
   }
 
-  .three-columns#courses {
-    display: block;
+  .grid-container.three-columns {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-
-  /* Since the larger layout made changes to nav ul, .one,
-    .two, .three, .four, #utd, and #collin, the changes
-    made there will be the default for the smaller layouts. */
-
-  footer ul a li {
+  footer li {
     width: 16%;
   }
-
 }
 
-
-
-/* Responsive layout - when the screen is less than 330px */
-  @media only screen and (max-width:330px){
-     header h1{
-      font-size: 225%;
-    }
-  
-    nav ul a li {
-      font-size: 0.8em;
-      width: 23%;
-    }
-
-    footer ul a li {
-      width: 20%;
-    }
+@media only screen and (max-width:330px) {
+  header h1 {
+    font-size: 225%;
   }
 
-  
+  nav ul li {
+    font-size: 0.8em;
+    width: 23%;
+  }
+
+  footer li {
+    width: 20%;
+  }
+
+  #skills {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-container.three-columns {
+    grid-template-columns: 1fr;
+  }
+}
