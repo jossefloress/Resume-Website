@@ -68,7 +68,7 @@ strong { font-weight: 650; color: var(--ink); }
 .links a { font-weight: 550; }
 
 /* Sections */
-section { padding-top: 3.5rem; padding-bottom: 1.5rem; }
+section.wrap { padding-top: 3.5rem; padding-bottom: 1.5rem; }
 h2 {
   font-size: .8rem;
   text-transform: uppercase;
@@ -163,3 +163,28 @@ footer .small { color: var(--muted); font-size: .85rem; }
   .project { grid-template-columns: 1fr; }
   a { color: inherit; }
 }
+
+/* Per-project accent: each project shows its own app's brand color (taken from that app's source).
+   Toyota work keeps the site navy. */
+.project { --accent: var(--navy); --accent-dark: var(--navy); }
+.project-text::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+  margin-bottom: .9rem;
+}
+.project .actions a { color: var(--accent); }
+.project .device video { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+@media (prefers-color-scheme: dark) {
+  .project-text::before { background: var(--accent-dark); }
+  .project .actions a { color: var(--accent-dark); }
+  .project .device video { border-color: color-mix(in srgb, var(--accent-dark) 35%, var(--line)); }
+}
+
+/* Now */
+h2 .updated { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.now { max-width: var(--measure); margin-top: 0; }
+section#now { padding-top: 1rem; padding-bottom: 0; }
