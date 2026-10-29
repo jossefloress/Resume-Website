@@ -1,0 +1,165 @@
+/*
+  josedevlabs.com
+  One column, system fonts, one accent color (the navy this site has used since 2021).
+  No frameworks, no webfonts.
+*/
+
+:root {
+  --navy: #203354;
+  --ink: #16191f;
+  --muted: #5d6573;
+  --line: #e4e7ec;
+  --soft: #f5f6f8;
+  --bg: #ffffff;
+  --link: #203354;
+  --live: #1f7a4d;
+  --measure: 40rem;
+  --page: 64rem;
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --navy: #a9bde3;
+    --ink: #e8eaee;
+    --muted: #9aa3b2;
+    --line: #2a2f38;
+    --soft: #171a20;
+    --bg: #0f1115;
+    --link: #b9cbee;
+    --live: #5cc290;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; border-radius: 4px; }
+
+strong { font-weight: 650; color: var(--ink); }
+
+.wrap { max-width: var(--page); margin: 0 auto; padding: 0 1.5rem; }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--bg); padding: .5rem .75rem; z-index: 10; }
+
+/* Intro */
+.intro { padding-top: 5.5rem; padding-bottom: 3rem; }
+.intro h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.lede { max-width: var(--measure); font-size: 1.25rem; line-height: 1.5; margin: 0 0 .75rem; }
+.where { color: var(--muted); margin: 0 0 1.25rem; }
+.links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+.links a { font-weight: 550; }
+
+/* Sections */
+section { padding-top: 3.5rem; padding-bottom: 1.5rem; }
+h2 {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  font-weight: 650;
+  margin: 0 0 1.5rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 1.2rem; line-height: 1.3; margin: 0; color: var(--ink); }
+
+ul { padding-left: 1.15rem; margin: .5rem 0 0; }
+li { margin: .35rem 0; }
+li::marker { color: var(--muted); }
+
+/* Projects */
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: 2.5rem;
+  align-items: start;
+  padding: 2rem 0 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.project:last-child { border-bottom: 0; }
+.project.compact { grid-template-columns: auto minmax(0, 1fr); gap: 1.25rem; }
+.project.compact:not(:has(.app-icon)) { grid-template-columns: minmax(0, 1fr); }
+.project:not(:has(.device)):not(.compact) { grid-template-columns: minmax(0, 1fr); }
+.project-text { max-width: var(--measure); }
+.project-text header { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .75rem; margin-bottom: .5rem; }
+.status { margin: 0; font-size: .85rem; color: var(--muted); }
+.status.live { color: var(--live); font-weight: 600; }
+.status.live::before { content: ""; display: inline-block; width: .5em; height: .5em; border-radius: 50%; background: currentColor; margin-right: .4em; vertical-align: .08em; }
+.summary { margin: 0; }
+.stack { margin: 1rem 0 0; color: var(--muted); font-size: .9rem; }
+.actions { margin: .9rem 0 0; font-weight: 600; }
+.actions a::after { content: ""; display: inline-block; width: .45em; height: .45em; margin-left: .35em; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); vertical-align: .1em; }
+.note { margin: .9rem 0 0; color: var(--muted); font-size: .9rem; font-style: italic; }
+
+.app-icon { border-radius: 22%; border: 1px solid var(--line); }
+
+/* Phone-sized recordings: a plain rounded frame, not a fake phone */
+.device { margin: 0; }
+.device video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 390 / 844;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+}
+.device figcaption { margin-top: .6rem; font-size: .8rem; color: var(--muted); }
+
+/* Experience and education */
+.role { padding: 0 0 1.75rem; max-width: 46rem; }
+.role-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+.when { margin: 0; color: var(--muted); font-size: .9rem; white-space: nowrap; }
+.title { margin: .15rem 0 0; color: var(--muted); }
+.earlier { color: var(--muted); max-width: 46rem; margin: 0 0 1rem; font-size: .95rem; }
+
+/* Skills */
+.skills { margin: 0; max-width: 46rem; }
+.skills div { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; padding: .55rem 0; border-top: 1px solid var(--line); }
+.skills div:first-child { border-top: 0; }
+.skills dt { color: var(--muted); font-size: .9rem; padding-top: .1rem; }
+.skills dd { margin: 0; }
+
+/* Footer */
+footer { padding-top: 3rem; padding-bottom: 4rem; border-top: 1px solid var(--line); margin-top: 2rem; }
+footer p { margin: 0 0 .4rem; }
+footer .small { color: var(--muted); font-size: .85rem; }
+
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .intro { padding-top: 3.5rem; }
+  .lede { font-size: 1.125rem; }
+  .project, .project.compact { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  .project .device { max-width: 15rem; }
+  .project.compact .app-icon { width: 56px; height: 56px; }
+  .skills div { grid-template-columns: 1fr; gap: .1rem; }
+  .role-head { flex-wrap: wrap; gap: .1rem 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@media print {
+  .device, .skip { display: none; }
+  .project { grid-template-columns: 1fr; }
+  a { color: inherit; }
+}

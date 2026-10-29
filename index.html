@@ -4,329 +4,281 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jose Israel Flores · Software Engineer</title>
   <meta name="author" content="Jose Israel Flores">
-  <meta name="description" content="Jose Israel Flores - iOS Software Engineer at Toyota building cloud-connected features and AI developer tooling. Education, experience, and projects.">
-  <meta name="keywords" content="Jose Flores, Software Engineer, Portfolio, Resume, Computer Science, UTD">
+  <meta name="description" content="Jose Israel Flores, iOS software engineer at Toyota. Connected-vehicle features for millions of drivers, an internal AI developer platform, and side projects like WorkoutDrop.">
   <link rel="canonical" href="https://josedevlabs.com/">
+  <meta name="color-scheme" content="light dark">
 
-  <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Jose Israel Flores - Software Engineer">
-  <meta property="og:description" content="Portfolio and resume website showcasing education, experience, and projects.">
+  <meta property="og:title" content="Jose Israel Flores · Software Engineer">
+  <meta property="og:description" content="iOS software engineer at Toyota. Connected-vehicle features, AI developer tooling, and side projects.">
   <meta property="og:image" content="https://josedevlabs.com/images/og_image0.png">
   <meta property="og:url" content="https://josedevlabs.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Jose DevLabs">
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jose Israel Flores - Software Engineer">
-  <meta name="twitter:description" content="Portfolio and resume website showcasing education, experience, and projects.">
+  <meta name="twitter:title" content="Jose Israel Flores · Software Engineer">
+  <meta name="twitter:description" content="iOS software engineer at Toyota. Connected-vehicle features, AI developer tooling, and side projects.">
   <meta name="twitter:image" content="https://josedevlabs.com/images/og_image0.png">
-
   <meta name="google-site-verification" content="19uv6AiSVErQDs0A615uDokrzeF82DeiVWSPcvZY0VQ">
+
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="./css/styles.css" rel="stylesheet" type="text/css">
-  <!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> -->
-  <!-- <script src="./js/scrollAnimation.js"></script> -->
-  <title>Jose Israel Flores - Software Engineer</title>
+  <link rel="stylesheet" href="./css/site.css">
+  <script src="./js/site.js" defer></script>
 </head>
 
-<body id="top">
-  <header>
-    <a href="https://josedevlabs.com/">
-      <h1>Jose I. Flores</h1>
-    </a>
-    <p class="tagline">iOS Software Engineer at Toyota Motor North America &middot; Dallas, Texas</p>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <header class="intro wrap">
+    <h1>Jose Israel Flores</h1>
+    <p class="lede">
+      iOS software engineer at Toyota. I build the connected-vehicle features that
+      <strong>millions of Toyota, Lexus, and Subaru drivers</strong> use, and the AI developer tools my team uses
+      every day.
+    </p>
+    <p class="where">Dallas, Texas</p>
+    <nav class="links" aria-label="Contact and profiles">
+      <a href="./documents/JoseFlores.pdf">Resume (PDF)</a>
+      <a href="https://github.com/jossefloress" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/jflores0001" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:fj260996@gmail.com">fj260996@gmail.com</a>
+    </nav>
   </header>
 
+  <main>
 
-  <nav>
-    <ul>
-      <!-- If you remove the hr tags (which are being
-        used as margin), add 'line' to end of the href
-        for each of the 4 following anchors-->
+    <section id="work" class="wrap" aria-labelledby="work-h">
+      <h2 id="work-h">Selected work</h2>
 
-      <!-- example: href="educationline" -->
-      <a href="#education" class="scrollLink">
-        <li>Education</li>
-      </a>
-
-      <a href="#experience" class="scrollLink">
-        <li>Experience</li>
-      </a>
-
-      <a href="#projects" class="scrollLink">
-        <li>Projects</li>
-      </a>
-
-      <a href="#more" class="scrollLink">
-        <li>More Info</li>
-      </a>
-    </ul>
-  </nav>
-
-
-
-  <main ontouchmove>
-    <hr id="education" href="#experience" style="padding: 0;">
-
-    <div class="line" id="resumeline">
-      <a href="./documents/JoseFlores.pdf">
-        <div id="resume-btn">
-          <img src="images/eye-regular.svg" alt="Eye animation">
-          <h3>Resume</h3>
+      <article class="project">
+        <div class="project-text">
+          <header>
+            <h3>WorkoutDrop</h3>
+            <p class="status live">Live</p>
+          </header>
+          <p class="summary">
+            A training app that builds a lifting program around your goal, schedule, and equipment, then runs
+            each session: sets, rest timer, and personal records. Works fully offline; signing in adds sync across
+            devices.
+          </p>
+          <ul>
+            <li>Routine generator that balances <strong>weekly sets per muscle</strong> against evidence-based
+              targets and explains its trade-offs</li>
+            <li>Installable offline PWA; cloud sync through serverless functions and Postgres</li>
+            <li>Passkey and email sign-in, Stripe billing</li>
+            <li><strong>200+ test files</strong>, including property-based tests</li>
+          </ul>
+          <p class="stack">SvelteKit · TypeScript · Tailwind CSS · Vercel · Neon Postgres · Stripe</p>
+          <p class="actions">
+            <a href="https://workoutdrop.floreshq.com" rel="noopener noreferrer">Open the app</a>
+          </p>
         </div>
-      </a>
-    </div>
+        <figure class="device">
+          <video class="demo" muted loop playsinline preload="none" poster="./media/workoutdrop-poster.jpg"
+            width="390" height="844" aria-label="WorkoutDrop demo: setting up a routine, reviewing the plan, and logging two sets">
+            <source src="./media/workoutdrop.webm" type="video/webm">
+            <source src="./media/workoutdrop.mp4" type="video/mp4">
+          </video>
+          <figcaption>Recorded on the live app: setup, plan, and a logged session.</figcaption>
+        </figure>
+      </article>
 
-    <div class="line" id="educationline">
-      <h2 class="linetitle">Education</h2>
-      <div class="two boxes">
-        <img src="images/utd_logo.svg" alt="The University of Texas at Dallas logo" id="utdimg">
-        <h3>The University of Texas at Dallas</h3>
-        <p class="meta"><em>B.S., Computer Science</em> &middot; May 2022</p>
-        <p>Hispanic Scholarship Fund Scholar</p>
-        <p>Society of Hispanic Professional Engineers (SHPE)</p>
-      </div>
+      <article class="project">
+        <div class="project-text">
+          <header>
+            <h3>Toyota Mobile MCP</h3>
+            <p class="status">Internal at Toyota</p>
+          </header>
+          <p class="summary">
+            A server I designed and built alone that gives AI agents tools for OneApp iOS and Android development and
+            QA. Used by <strong>6+ mobile engineers every day</strong>; demoed to leadership.
+          </p>
+          <ul>
+            <li>Cut weekly release-note prep from <strong>2+ hours to under 30 seconds</strong> with a GitHub
+              Actions pipeline</li>
+            <li>Cut test-account lookup from <strong>30 minutes to 1–3 minutes</strong> by automating sign-in and
+              account switching across environments, brands, and regions</li>
+            <li>AI-driven end-to-end tests on physical devices with Appium, self-healing element targeting, and a
+              screen knowledge graph that keeps agent token use down</li>
+            <li>AI pull-request reviewer that handles up to <strong>9 PRs at once</strong></li>
+          </ul>
+          <p class="stack">TypeScript · Node.js · Model Context Protocol · LLM agents · Appium · GitHub Actions</p>
+          <p class="note">Internal tool, so there is no public demo.</p>
+        </div>
+      </article>
 
-      <div class="two boxes">
-        <img src="images/collin_logo.png" alt="Collin College logo" id="collinimg">
-        <h3>Collin College</h3>
-        <p class="meta"><em>A.S., Computer Science</em> &middot; May 2020</p>
-        <p>Dean’s List (Spring 2020)</p>
-        <p>President’s List (Fall 2019)</p>
-      </div>
+      <article class="project">
+        <div class="project-text">
+          <header>
+            <h3>MedTracker</h3>
+            <p class="status live">Live</p>
+          </header>
+          <p class="summary">
+            A free daily medication schedule. Enter your prescriptions and wake-up time, and it builds the day’s
+            dose checklist, flags drug interactions, and prints a clean schedule. Try it without an account.
+          </p>
+          <p class="stack">HTML · CSS · JavaScript</p>
+          <p class="actions">
+            <a href="./medtracker/">Open MedTracker</a>
+          </p>
+        </div>
+        <figure class="device">
+          <video class="demo" muted loop playsinline preload="none" poster="./media/medtracker-poster.jpg"
+            width="390" height="844" aria-label="MedTracker demo: adding three medications and generating the day's schedule">
+            <source src="./media/medtracker.webm" type="video/webm">
+            <source src="./media/medtracker.mp4" type="video/mp4">
+          </video>
+          <figcaption>Demo mode: three medications to a full-day schedule.</figcaption>
+        </figure>
+      </article>
 
-    </div>
+      <article class="project compact">
+        <img class="app-icon" src="./media/plandrop-icon.png" width="72" height="72" alt="PlanDrop app icon">
+        <div class="project-text">
+          <header>
+            <h3>PlanDrop</h3>
+            <p class="status">In development</p>
+          </header>
+          <p class="summary">
+            Plan meetups without the group-chat back-and-forth. Drop a proposal in iMessage, friends vote on the
+            time and place, and add the result to your calendar. Native iPhone app, iMessage extension,
+            widgets, Apple Watch, and Mac.
+          </p>
+          <p class="stack">Swift · SwiftUI · Messages framework · WidgetKit · watchOS</p>
+        </div>
+      </article>
 
-    <hr id="experience">
-    <div class="line" id="experienceline">
-      <h2 class="linetitle">Experience</h2>
+      <article class="project compact">
+        <div class="project-text">
+          <header>
+            <h3>CardDrop</h3>
+            <p class="status">In development</p>
+          </header>
+          <p class="summary">
+            Conversation cards for partners, friends, or solo reflection. Draw a question from a themed deck,
+            answer it together, and save the answers to a shared memory timeline that tracks your streak.
+            iPhone and Android app with offline storage and a cloud API.
+          </p>
+          <p class="stack">React Native (Expo) · TypeScript · SQLite · Supabase · Express on Google Cloud Run</p>
+        </div>
+      </article>
 
-      <div class="one boxes">
-        <h3>Toyota Motor North America</h3>
-        <p class="meta"><em>iOS Software Engineer</em> &middot; July 2022 – Present &middot; Plano, Texas (Hybrid)</p>
+      <article class="project compact">
+        <div class="project-text">
+          <header>
+            <h3>Arene Trip Twin</h3>
+            <p class="status">2026 SWARM Toyota Global Hackathon</p>
+          </header>
+          <p class="summary">
+            Tells a driver whether their vehicle is ready for an upcoming trip by combining vehicle health, range,
+            tires, maintenance, weather, route, and charging data. I captained the team. We were the
+            <strong>first OneApp team to build on Arene</strong>, Toyota Woven’s vehicle OS, working inside its
+            Docker container through limited SDK access.
+          </p>
+          <p class="stack">Swift · Arene SDK · Docker</p>
+        </div>
+      </article>
+    </section>
+
+
+    <section id="experience" class="wrap" aria-labelledby="exp-h">
+      <h2 id="exp-h">Experience</h2>
+
+      <div class="role">
+        <div class="role-head">
+          <h3>Toyota Motor North America</h3>
+          <p class="when">July 2022 – Present</p>
+        </div>
+        <p class="title">iOS Software Engineer · Plano, Texas (Hybrid)</p>
         <ul>
-          <li>Shipped cloud-connected production features for the Toyota, Lexus, and Subaru connected-vehicle app
+          <li>Ship cloud-connected production features for the Toyota, Lexus, and Subaru connected-vehicle app
             across <strong>3 brands and 4 regions</strong>, serving <strong>millions of monthly active users</strong>,
             including the Australia &amp; New Zealand launch</li>
-          <li>Solely designed, built, and operate Toyota Mobile MCP, an internal TypeScript/Node.js service that
-            gives LLM agents tools for development, QA, and releases; adopted by <strong>6+ engineers daily</strong></li>
-          <li>Built remote vehicle commands on GraphQL subscriptions and real-time telemetry for reliable cloud
-            services</li>
+          <li>Built remote vehicle commands on GraphQL subscriptions and real-time telemetry, with backend teams,
+            for reliable cloud services</li>
           <li>Released Data Transmission Off privacy controls behind LaunchDarkly feature flags for gradual
             rollouts</li>
           <li>Led security hardening of the iOS codebase: <strong>TLS 1.3</strong> enforcement, WebView JavaScript
             and endpoint audits, and CodeQL alert fixes</li>
-          <li>Migrated multiple Flutter features to native Swift (including EV Wallet, navigation, POI), improving
-            performance</li>
-          <li>Captained the 2026 SWARM Toyota Global Hackathon team, the <strong>first OneApp team</strong> to connect
-            to Arene</li>
-          <li>Onboarded <strong>10+ engineers</strong> on architecture, tooling, and conventions; run first-round
-            technical interviews</li>
+          <li>Migrated multiple Flutter features to native Swift, including EV Wallet, navigation, and POI</li>
+          <li>Onboarded <strong>10+ engineers</strong>; run first-round technical interviews</li>
         </ul>
-        <div class="tags">
-          <span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">GraphQL</span>
-          <span class="tag">TypeScript</span><span class="tag">LaunchDarkly</span><span class="tag">CodeQL</span>
+      </div>
+
+      <div class="role">
+        <div class="role-head">
+          <h3>Children’s Health</h3>
+          <p class="when">Jan 2022 – May 2022</p>
         </div>
-      </div>
-
-      <div class="two boxes">
-        <h3>Children's Health</h3>
-        <p class="meta"><em>iOS Software Engineer</em> &middot; January 2022 – May 2022 &middot; Dallas, Texas</p>
+        <p class="title">iOS Software Engineer · UTD Computer Science Senior Project</p>
         <ul>
-          <li>UTD Computer Science Senior Project</li>
-          <li>Continued development of a children's learning platform with AR functionality</li>
-          <li>Worked across four teams: two software engineering groups, one computer engineering group, and one
-            UI/UX designer</li>
-          <li>Made backend and frontend changes using Swift, Firebase, and GitHub</li>
+          <li>Built features for a children’s learning platform with AR, in Swift and Firebase, across two
+            software teams, a hardware team, and a UI/UX designer</li>
         </ul>
       </div>
 
-      <div class="two boxes">
-        <h3>Wells Fargo</h3>
-        <p class="meta"><em>Software Engineer Intern</em> &middot; June 2021 – August 2021 &middot; Irving, Texas</p>
+      <div class="role">
+        <div class="role-head">
+          <h3>Wells Fargo</h3>
+          <p class="when">June 2021 – Aug 2021</p>
+        </div>
+        <p class="title">Software Engineer Intern · Irving, Texas</p>
         <ul>
           <li>Closed <strong>20+ bugs and vulnerabilities</strong> in a .NET system using SonarQube</li>
-          <li>Added regex validation to input fields of the auto loan origination process to prevent SQL injection
-            attacks</li>
-          <li>Worked with Jira, Agile Scrum, and automated testing (UFT, VDIs, smoke tests, and regression testing)</li>
-          <li>Took part in sprint planning, sprint refinement, and daily stand-ups</li>
-          <li>Served as project manager for a <strong>7&#8209;person</strong> intern team</li>
+          <li>Added input validation to auto-loan fields to prevent SQL injection</li>
+          <li>Project manager for a <strong>7&#8209;person</strong> intern team</li>
         </ul>
       </div>
 
-      <div class="one boxes">
-        <h3>Earlier Experience</h3>
-        <ul>
-          <li><strong>Kitchen Manager</strong>, Chipotle Mexican Grill &middot; Dallas, Texas &middot; 2015 – 2017:
-            supervised <strong>7–8&nbsp;people</strong> a day and managed cost control, P&amp;L, and inventory</li>
-          <li><strong>Online Sales Chat Agent</strong>, Etech Global Services &middot; Dallas, Texas &middot;
-            2018 – 2019: exceeded sales quotas by an average of <strong>115% per month</strong></li>
-        </ul>
-      </div>
-    </div>
+      <p class="earlier">
+        Before software: Kitchen Manager at Chipotle (2015–2017), supervising 7–8 people a day; Online Sales Chat
+        Agent at Etech Global Services (2018–2019), averaging 115% of sales quota.
+      </p>
+    </section>
 
 
-    <hr id="projects">
-    <div class="line" id="projectsline">
-      <h2 class="linetitle">Projects</h2>
-      <div class="two boxes">
-        <h3>Toyota Mobile MCP Server</h3>
-        <p class="meta">Internal AI developer platform &middot; Solo-built</p>
-        <p>Gives LLM agents tools for OneApp iOS/Android development and QA. Used by
-          <strong>6+ engineers daily</strong>.</p>
-        <ul>
-          <li>Cut weekly release-note prep from <strong>2+ hours to under 30 seconds</strong></li>
-          <li>Cut test-account lookup from <strong>30 minutes to 1–3 minutes</strong></li>
-          <li>AI-driven E2E testing on physical devices with Appium</li>
-          <li>AI PR reviewer that handles up to <strong>9 PRs at once</strong></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">MCP</span>
-          <span class="tag">LLM agents</span><span class="tag">GitHub Actions</span><span class="tag">Appium</span>
+    <section id="skills" class="wrap" aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd>Swift, TypeScript/JavaScript, Python</dd></div>
+        <div><dt>iOS</dt><dd>SwiftUI, Swift Concurrency, Combine, Swift Package Manager, Xcode</dd></div>
+        <div><dt>Web &amp; cloud</dt><dd>SvelteKit, Node.js, GraphQL, REST, Docker, GitHub Actions, Vercel, Postgres</dd></div>
+        <div><dt>AI tooling</dt><dd>Model Context Protocol, LLM agents, tool and prompt orchestration</dd></div>
+        <div><dt>Testing &amp; security</dt><dd>XCTest, Swift Testing, Vitest, Appium, SonarQube, CodeQL</dd></div>
+        <div><dt>Learning now</dt><dd>Amazon Bedrock, Amazon SageMaker, RAG, AWS CDK</dd></div>
+        <div><dt>Spoken</dt><dd>English and Spanish (fluent)</dd></div>
+      </dl>
+    </section>
+
+
+    <section id="education" class="wrap" aria-labelledby="edu-h">
+      <h2 id="edu-h">Education</h2>
+      <div class="role">
+        <div class="role-head">
+          <h3>The University of Texas at Dallas</h3>
+          <p class="when">May 2022</p>
         </div>
+        <p class="title">B.S., Computer Science · Hispanic Scholarship Fund Scholar · SHPE</p>
       </div>
-
-      <div class="two boxes">
-        <h3>Arene Trip Twin</h3>
-        <p class="meta">2026 SWARM Toyota Global Hackathon &middot; Team captain</p>
-        <p>Mobile experience that explains whether a vehicle is ready for an upcoming trip.</p>
-        <ul>
-          <li><strong>First OneApp team</strong> to build on Arene, Toyota Woven’s vehicle OS</li>
-          <li>Developed inside Arene’s Docker container through limited SDK access</li>
-          <li>Combined vehicle health, range, tires, maintenance, weather, route, and charging data into one
-            trip-readiness assessment</li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Swift</span><span class="tag">Docker</span><span class="tag">Arene SDK</span>
+      <div class="role">
+        <div class="role-head">
+          <h3>Collin College</h3>
+          <p class="when">May 2020</p>
         </div>
+        <p class="title">A.S., Computer Science · Dean’s List, President’s List</p>
       </div>
-
-    </div>
-
-
-    <hr id="more">
-    <div class="line" id="moreline">
-      <h2 class="linetitle">Additional Information</h2>
-
-      <div class="two boxes">
-        <h3>Technical</h3>
-        <div class="skill-group">
-          <h4>Languages</h4>
-          <div class="tags"><span class="tag">Swift</span><span class="tag">TypeScript/Node.js</span><span class="tag">Python</span></div>
-        </div>
-        <div class="skill-group">
-          <h4>Cloud &amp; DevOps</h4>
-          <div class="tags"><span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">GraphQL</span><span class="tag">REST APIs</span><span class="tag">Git/GitHub</span></div>
-        </div>
-        <div class="skill-group">
-          <h4>AI &amp; Testing</h4>
-          <div class="tags"><span class="tag">MCP</span><span class="tag">LLM agents</span><span class="tag">Appium</span><span class="tag">XCTest</span><span class="tag">SonarQube</span><span class="tag">CodeQL</span></div>
-        </div>
-        <div class="skill-group">
-          <h4>iOS</h4>
-          <div class="tags"><span class="tag">SwiftUI</span><span class="tag">Swift Concurrency</span><span class="tag">Combine</span><span class="tag">Firebase</span><span class="tag">Xcode</span></div>
-        </div>
-      </div>
-
-      <div class="two boxes">
-        <h3>Languages</h3>
-        <div class="grid-container two-columns">
-          <p>English</p>
-          <p>Fluent</p>
-          <p>Spanish</p>
-          <p>Fluent</p>
-        </div>
-
-        <h3 class="spaced">Currently Learning</h3>
-        <div class="tags"><span class="tag">Amazon Bedrock</span><span class="tag">Amazon SageMaker</span><span class="tag">RAG</span><span class="tag">AWS CDK</span></div>
-      </div>
-    </div>
-
-
-    <hr id="contact">
-    <div class="line" id="contactline">
-
-      <h2 class="linetitle">Contact Info</h2>
-
-      <div class="two boxes">
-        <h3>Github</h3>
-        <p>
-          <a href="https://www.github.com/jossefloress" target="_blank" rel="noopener noreferrer">
-            www.github.com/jossefloress
-          </a>
-        </p>
-      </div>
-
-      <div class="two boxes">
-        <h3>LinkedIn</h3>
-        <p>
-          <a href="https://www.linkedin.com/in/jflores0001" target="_blank" rel="noopener noreferrer">
-            www.linkedin.com/in/jflores0001
-          </a>
-        </p>
-      </div>
-
-      <div class="two boxes">
-        <h3>Email</h3>
-        <p>
-          <a href="mailto:fj260996@gmail.com" target="_blank">
-            fj260996@gmail.com
-          </a>
-        </p>
-      </div>
-
-      <div class="two boxes">
-        <h3>Phone Number</h3>
-        <p>
-          <a href="tel:469-803-6800">
-            469-803-6800
-          </a>
-        </p>
-      </div>
-
-    </div>
-
-    <hr>
+    </section>
 
   </main>
 
-
-  <footer>
-    <ul>
-
-      <a href="https://www.github.com/jossefloress" target="_blank" rel="noopener noreferrer">
-        <li>
-          <img src="./images/Github_Icon.svg" alt="Github Icon">
-        </li>
-      </a>
-
-
-      <a href="https://www.linkedin.com/in/jflores0001" target="_blank" rel="noopener noreferrer">
-        <li>
-          <img src="./images/Linkedin_Icon.svg" alt="LinkedIn Icon">
-        </li>
-      </a>
-
-      <a href="mailto:fj260996@gmail.com" target="_blank" rel="noopener noreferrer">
-        <li>
-          <img src="./images/Email_Icon.svg" alt="Email Icon">
-        </li>
-      </a>
-
-
-      <a href="tel:469-803-6800">
-        <li>
-          <img src="./images/Calling_Icon.svg" alt="Phone Icon">
-        </li>
-      </a>
-
-
-    </ul>
+  <footer class="wrap">
+    <p>
+      Say hello: <a href="mailto:fj260996@gmail.com">fj260996@gmail.com</a> ·
+      <a href="tel:+14698036800">469-803-6800</a>
+    </p>
+    <p class="small">© 2026 Jose Israel Flores</p>
   </footer>
-
-
 </body>
 
 </html>
